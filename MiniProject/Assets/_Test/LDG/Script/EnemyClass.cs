@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEnemyData",menuName = "GameData/EnemyData")]
@@ -36,6 +37,16 @@ public class EnemyClass : ScriptableObject
         maxHealth = Mathf.RoundToInt(maxHealth * value);
         curHealth = Mathf.RoundToInt(curHealth * value);
         damage = Mathf.RoundToInt(damage * value);
+    }
+
+    public ProjectilePrefab _projectile;
+    
+    [Serializable]
+    public class ProjectilePrefab
+    {
+        public GameObject prefab;
+        public float speed;
+        public float destroyTime;
     }
 }
 
