@@ -233,10 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0932dea0f93e54ebcbe0ff97a2818c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackType: 3
-  EnemyType: 0
-  attackRaius: 2
-  dropItem: []
+  _enemyClass: {fileID: 11400000, guid: 222f3452a64265c4eb0d77e7e1d5adc4, type: 2}
   player: {fileID: 1684381884}
 --- !u!54 &250932758
 Rigidbody:
