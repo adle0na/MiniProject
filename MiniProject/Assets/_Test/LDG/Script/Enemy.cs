@@ -32,18 +32,10 @@ public class Enemy : MonoBehaviour
         else
             switch (_enemyClass.EnemyAttackType)
             {
-                case EnemyAttackType.Mlee:
-                    StartCoroutine(StartMleeAI());
-                    break;
-                case EnemyAttackType.Explosion:
-                    StartCoroutine(StartExplosionAI());
-                    break;
-                case EnemyAttackType.Projectile:
-                    StartCoroutine(StartProjectileAI());
-                    break;
-                default:
-                    Debug.Log("설정 안했네?");
-                    break;
+                case EnemyAttackType.Mlee: StartCoroutine(StartMleeAI()); break;
+                case EnemyAttackType.Explosion: StartCoroutine(StartExplosionAI()); break;
+                case EnemyAttackType.Projectile: StartCoroutine(StartProjectileAI()); break;
+                default: Debug.Log("설정 안했네?"); break;
             }
     }
 

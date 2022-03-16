@@ -16,7 +16,7 @@ MonoBehaviour:
   EnemyEnhanceType: 0
   maxHealth: 50
   damage: 5
-  attackDelay: 2
+  attackDelay: 0.3
   attackRadius: 5
   speed: 3
   dropItems: []
