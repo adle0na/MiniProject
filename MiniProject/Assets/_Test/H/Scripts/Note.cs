@@ -9,7 +9,7 @@ public class Note : MonoBehaviour
     // 노트 이동속도
     public float noteSpeed = 400;
 
-    UnityEngine.UI.Image noteImage;
+    public UnityEngine.UI.Image noteImage;
 
     void Start()
     {
@@ -30,9 +30,11 @@ public class Note : MonoBehaviour
         
     }
 
+    
     public void HideNote()
     {
         noteImage.enabled = false;
     }
     #endregion
+    
 }

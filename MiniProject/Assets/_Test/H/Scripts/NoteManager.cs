@@ -90,7 +90,6 @@ public class NoteManager : MonoBehaviour
     }
 
     // 트리거 충돌 진행시
-    /*
     private void OnTriggerStay2D(Collider2D collision)
     {
         // 생성된 노트에 noteImage 지정 선언
@@ -103,7 +102,6 @@ public class NoteManager : MonoBehaviour
             noteImage.color = Color.Lerp(noteImage.color, clearColor, 0.3f);
         }
     }
-    */
 
     #endregion
     #endregion

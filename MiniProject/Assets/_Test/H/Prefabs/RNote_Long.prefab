@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteSpeed: 400
+  noteImage: {fileID: 4294011860865166767}
 --- !u!61 &-8475283669741591213
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +116,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 100}
+  m_Size: {x: 9, y: 100}
   m_EdgeRadius: 0
 --- !u!50 &7976996474484278246
 Rigidbody2D:

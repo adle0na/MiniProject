@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimingManager : MonoBehaviour
 {
-    // 생성된 모든 노트를 관리해야 해서 List로 선언
+    // 판정 범위 안에 있는지 판독할 생성되는 노트들
     public List<GameObject> boxNoteList = new List<GameObject>();
 
     [SerializeField] Transform Center = null;
@@ -24,8 +24,8 @@ public class TimingManager : MonoBehaviour
         for(int i = 0; i < timingRect.Length; i++ )
         {
             // 
-            timingBoxs[i].Set(Center.localPosition.x - timingRect[i].rect.width / 2,
-                              Center.localPosition.x + timingRect[i].rect.width / 2);
+            timingBoxs[i].Set(Center.localPosition.x - timingRect[i].rect.width,
+                              Center.localPosition.x + timingRect[i].rect.width);
         }
     }
 
@@ -33,15 +33,12 @@ public class TimingManager : MonoBehaviour
     {
         for(int i = 0; i < boxNoteList.Count; i++)
         {
-            Debug.Log("첫번째 반복");
             float t_notePosX = boxNoteList[i].transform.localPosition.x;
 
             for(int x = 0; x < timingBoxs.Length; x++)
             {
-                Debug.Log("두번째 반복");
                 if(timingBoxs[x].x <= t_notePosX && t_notePosX <= timingBoxs[x].y)
                 {
-                    boxNoteList[i].GetComponent<Note>().HideNote();
                     boxNoteList.RemoveAt(i);
                     Debug.Log("Hit" + x);
                     return;
