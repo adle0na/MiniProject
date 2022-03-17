@@ -320,7 +320,6 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.3
@@ -859,7 +858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &762942219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1054,13 +1053,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181fe3a595949d44585ecfa56331cbcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dodgeForce: 0
+  jumpForce: 10
   walkSpeed: 10
   runSpeed: 30
   lookSensitivity: 2.5
   cameraRotationLimit: 45
   crouchSpeed: 5
   crouchPosY: 0
-  jumpForce: 10
   theCamera: {fileID: 1201289315}
 --- !u!54 &806769618
 Rigidbody:
@@ -1070,7 +1070,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806769612}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1

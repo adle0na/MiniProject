@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
+using System;
 
 public class PlayerMoveController : MonoBehaviour
 {
-    // ������
     #region variables
 
-    // �ӵ�����
+
+    public float dodgeForce;
+    public float jumpForce;
+    private KeyCode m_FirstButtonPressed;
+    private float m_TimeOfFirstButton;
+    private bool m_Reset;
+
+    private bool dodgePossible;
+
     [SerializeField]
     private float walkSpeed;
 
@@ -15,37 +25,26 @@ public class PlayerMoveController : MonoBehaviour
     private float runSpeed;
     private float applySpeed;
 
-    // �ΰ���
     [SerializeField]
     private float lookSensitivity;
 
-    // ī�޶� ����
     [SerializeField]
     private float cameraRotationLimit;
     private float currentCameraRotationX = 0f;
 
-    // ���� ����
     private bool isRun = false;
     private bool isCrouch = false;
     private bool isGround = true;
 
-    // �������� �ӵ�
     [SerializeField]
     private float crouchSpeed;
 
-    // �ɴ� �ӵ� ����
     [SerializeField]
     private float crouchPosY;
     private float originPosY;
 
     private float applyCrouchPosY;
 
-    // �����ϴ� ��
-    [SerializeField]
-    private float jumpForce;
-
-
-    // ��� ������Ʈ
     [SerializeField]
     private Camera theCamera;
     private Rigidbody playerRb;
@@ -53,84 +52,165 @@ public class PlayerMoveController : MonoBehaviour
 
     #endregion
 
-    // �Լ���
     #region Functions
     void Start()
     {
         capsuleCollider = GetComponent<CapsuleCollider>();
-        // ���� �� ��� ����
+
         playerRb = GetComponent<Rigidbody>();
-        // �ӵ��� ��ȯ ���
+
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
         applyCrouchPosY = originPosY;
+
     }
 
     void Update()
     {
-        // �Է°� �Լ� ȣ��
+
         IsGround();
         TryJump();
-        TryRun(); // �ٴ��� Ȯ���� ���� �ݵ�� Move()�Լ����� ���� ����
+        TryRun(); 
         TryCrouch();
         Move();
         CameraRotation();
         CharactorRotation();
+
+        if(checkDoubleTap(KeyCode.A) && dodgePossible)
+        {
+            dodge(KeyCode.A);
+        }
+
+        if(checkDoubleTap(KeyCode.W) && dodgePossible)
+        {
+            dodge(KeyCode.W);
+        }
+
+        if(checkDoubleTap(KeyCode.D) && dodgePossible)
+        {
+            dodge(KeyCode.A);
+        }
+
+        if(checkDoubleTap(KeyCode.S) && dodgePossible)
+        {
+            dodge(KeyCode.A);
+        }
+
     }
 
-    // �޸����� Ȯ�� �Լ�
+    private void dodge(KeyCode directionKey)
+    {
+        float force = dodgeForce;
+
+        if(!isGround)
+        {
+            force = force / 5;
+        }
+
+        Vector3 directionVector = findVectorForDirection(directionKey);
+        playerRb.drag = 0f;
+
+        playerRb.AddForce(new Vector3(0f, jumpForce / 2, 0f), ForceMode.Impulse);
+        playerRb.AddForce(-new Vector3(directionVector.x * force, directionVector.y * force, directionVector.z * force), ForceMode.Impulse);
+        dodgePossible = false;
+    }
+
+    private Vector3 findVectorForDirection(KeyCode directionKey)
+    {
+        if (directionKey == KeyCode.W)
+        {
+            return transform.forward;
+        }
+
+        if (directionKey == KeyCode.S)
+        {
+            return -transform.forward;
+        }
+
+        Vector3 up = new Vector3(0.0f, 1.0f, 0.0f);
+        Vector3 left = Vector3.Cross(transform.forward.normalized, up.normalized);
+
+        if(directionKey == KeyCode.A)
+        {
+            return left;
+        }
+
+        return -left;
+    }
+
+
     private void TryRun()
     {
-        // LeftShiftŰ �Է½�
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            // �޸��� �Լ� ����
+
             Running();
         }
-        // LeftShiftŰ �ߴܽ�
+
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            // �޸��� ���� �Լ� ����
+
             RunningCancle();
         }
     }
 
-    // �ɱ� ���� �Լ�
     private void TryCrouch()
-    {   // LeftControlŰ�� ������ ���� ������
-        if (Input.GetKeyDown(KeyCode.LeftControl) && isGround)
+    {  
+        if (Input.GetKeyDown(KeyCode.LeftAlt) && isGround)
         {
-            // ���̱� ����
+
             Crouch();
 
         }
     }
 
-    // ���̱� �Լ�
+    private bool checkDoubleTap(KeyCode key)
+    {
+        if (Input.GetKeyDown(key) && m_FirstButtonPressed == key)
+        {
+            m_FirstButtonPressed = KeyCode.O;
+
+            if (Time.time - m_TimeOfFirstButton < 0.5f)
+            {
+                return true;
+            }
+        }
+
+        if(Input.GetKeyDown(key) && m_FirstButtonPressed != key)
+        {
+            m_FirstButtonPressed = key;
+            m_TimeOfFirstButton = Time.time;
+            return false;
+        }
+
+        return false;
+    }
+
+
     private void Crouch()
     {
-        // Toggle ���
-        isCrouch = !isCrouch; // true�� false�� false�� true��
 
-        // ���ǹ� ���λ��¶��
+        isCrouch = !isCrouch;
+
+
         if (isCrouch)
         {
-            // �̵��ӵ��� �þ߸� ���ΰ�����
+
             applySpeed = crouchSpeed;
             applyCrouchPosY = crouchPosY;
         }
-        else // ���� ���°� �ƴ϶��
+        else
         {
-            // �Ϲ� �̵��ӵ��� ���� �þ߷�
             applySpeed = walkSpeed;
             applyCrouchPosY = originPosY;
         }
-        // ���̱� �ڷ�ƾ �Լ� ����
+
         StartCoroutine(CrouchCoroutine());
 
     }
+    
 
-    // �ε巯�� ���̱�
     IEnumerator CrouchCoroutine()
     {
         float _posY = theCamera.transform.localPosition.y;
@@ -149,20 +229,20 @@ public class PlayerMoveController : MonoBehaviour
 
     }
 
-    // ���� Ȯ��
     private void IsGround()
     {
         isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
+        dodgePossible = true;
     }
-    // ���� Ű �Է¹޾����� ����
+
     private void TryJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (Input.GetKeyDown(KeyCode.F) && isGround)
         {
             Jump();
         }
     }
-    // ���� �Լ�
+
     private void Jump()
     {
         if (isCrouch)
@@ -171,68 +251,64 @@ public class PlayerMoveController : MonoBehaviour
         playerRb.velocity = transform.up * jumpForce;
     }
 
-    // �޸��� �Լ�
+
     private void Running()
     {
         if (isCrouch)
             Crouch();
-        // �޸��� ���� On
+
         isRun = true;
-        // �ӵ��� = �޸��� �ӵ�
+ 
         applySpeed = runSpeed;
     }
 
-    // �޸��� �ߴ� �Լ�
+
     private void RunningCancle()
     {
-        // �޸��� ���� Off
+
         isRun = false;
-        // �ӵ��� = �ȴ� �ӵ�
+
         applySpeed = walkSpeed;
     }
 
 
     private void Move()
     {
-        // �� �� ����Ű �Է°��� ����
+    
         float _moveDirX = Input.GetAxisRaw("Horizontal");
-        // �� �� ����Ű �Է°��� ����
+
         float _moveDirZ = Input.GetAxisRaw("Vertical");
 
-        // �Է¹��� ���� ���� ���Ͱ� ����
         Vector3 _moveHorizontal = transform.right * _moveDirX;
         Vector3 _moveVertical = transform.forward * _moveDirZ;
 
-        // ���Ͱ��� ������ normalize�� 1�� ����ȭ
         Vector3 _velocity = (_moveHorizontal + _moveVertical).normalized * applySpeed;
-        // �÷��̾��� ���� ��ü ������ ����
+
         playerRb.MovePosition(transform.position + _velocity * Time.deltaTime);
     }
 
-    // ī�޶� ȸ���� �Լ� (����)
     private void CameraRotation()
     {
-        // ���콺�� ���Ʒ��� �����Ҽ� �ִ� ȸ����X �Է� ���� ����
+
         float _xRotation = Input.GetAxisRaw("Mouse Y");
-        // ī�޶� ������ �޾ƿ� ���� * ����
+
         float _cameraRotationX = _xRotation * lookSensitivity;
-        // ���� ��� ������ ī�޶� ȸ������ �� �� (������ �ݴ��̱� ������)
+
         currentCameraRotationX -= _cameraRotationX;
-        // ���� ��� ������ ��°����� �ּ� �ִ� ������ ����
+ 
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
 
-        // ���ݱ��� ����� ���� ����Ͽ� ���� Vector�� X�ุ ����
+
         theCamera.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
     }
 
-    // ĳ���� ȸ���� �Լ� (�¿�)
     private void CharactorRotation()
     {
-        // ���콺�� �¿� ���� �Է¹���
+
         float _yRotation = Input.GetAxisRaw("Mouse X");
-        // ĳ������ ������ �޾ƿ� Y�ప * ����
+
         Vector3 _charactorRotationY = new Vector3(0f, _yRotation, 0f) * lookSensitivity;
-        // ���� ������� ĳ������ ��ü ���� ȸ�� ( ����� Quaternion���Ϸ� ������ )
+
         playerRb.MoveRotation(playerRb.rotation * Quaternion.Euler(_charactorRotationY));
     }
 
