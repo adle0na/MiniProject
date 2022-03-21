@@ -7,10 +7,23 @@ public class Weapon : MonoBehaviour
     public string currentEquiped;
     
     public float attackRange;
-    public float attackSpeed;
+    public float attackRate;
     public float attackDamage;
 
     public float gunAttackDelay;
-    public float gunBulletCount;
+    public float gunAttackOffDelay;
 
+    public float reloadDelay;
+
+    public int gunCurrentBullet;
+    public int gunCarryBullet;
+    public int gunMaxBullet;
+    public int gunReloadBullet;
+
+    public Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 }
