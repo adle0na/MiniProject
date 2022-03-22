@@ -20,7 +20,19 @@ public class EnemyClass : ScriptableObject
     [Tooltip("최대 체력")]
     public int maxHealth;
     [Tooltip("현재 체력")]
-    internal int curHealth;
+    private int curHealth;
+
+    public int CurHealth
+    {
+        set
+        {
+            curHealth = value;
+            if (curHealth <= 0)
+                isDie = true;
+        }
+        get => curHealth;
+    }
+    
     [Tooltip("공격력")]
     public int damage;
     [Tooltip("공격 대기시간")]
@@ -31,6 +43,8 @@ public class EnemyClass : ScriptableObject
     public float speed;
     [Tooltip("드랍 아이템")]
     public GameObject[] dropItems;
+
+    internal bool isDie = false;
 
     public void SpecialEnemy(float value = 1.5f)
     {

@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     private Vector3 dir;
     private bool isDeteted;
 
+    #region Unity Method
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -18,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        _enemyClass.curHealth = _enemyClass.maxHealth;
+        _enemyClass.CurHealth = _enemyClass.maxHealth;
         isDeteted = GetPlayerDetected();
 
         if (_enemyClass.EnemyEnhanceType == EnemyEnhanceType.Special)
@@ -53,11 +55,22 @@ public class Enemy : MonoBehaviour
     }
 
 
+    #endregion
+
+    #region Public Method
+
+    public void HitEnemmy(int damage)
+    {
+        _enemyClass.CurHealth -= damage;
+    }
+    
+    #endregion
+ 
     #region Private Method
 
     private IEnumerator StartExplosionAI()
     {
-        while (_enemyClass.curHealth > 0)
+        while (!_enemyClass.isDie)
         {
             if (isDeteted)
             {
@@ -80,7 +93,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator StartMleeAI()
     {
-        while (_enemyClass.curHealth > 0)
+        while (!_enemyClass.isDie)
         {
             if (isDeteted)
             {
@@ -101,7 +114,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator StartProjectileAI()
     {
-        while (_enemyClass.curHealth > 0)
+        while (!_enemyClass.isDie)
         {
             if (isDeteted)
             {
