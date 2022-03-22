@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -30,14 +31,23 @@ public class Enemy : MonoBehaviour
 
         if (_enemyClass.EnemyEnhanceType == EnemyEnhanceType.Boss)
         {
+            StartCoroutine(StartBossAI());
         }
         else
             switch (_enemyClass.EnemyAttackType)
             {
-                case EnemyAttackType.Mlee: StartCoroutine(StartMleeAI()); break;
-                case EnemyAttackType.Explosion: StartCoroutine(StartExplosionAI()); break;
-                case EnemyAttackType.Projectile: StartCoroutine(StartProjectileAI()); break;
-                default: Debug.Log("설정 안했네?"); break;
+                case EnemyAttackType.Mlee:
+                    StartCoroutine(StartMleeAI());
+                    break;
+                case EnemyAttackType.Explosion:
+                    StartCoroutine(StartExplosionAI());
+                    break;
+                case EnemyAttackType.Projectile:
+                    StartCoroutine(StartProjectileAI());
+                    break;
+                default:
+                    Debug.Log("설정 안했네?");
+                    break;
             }
     }
 
@@ -54,7 +64,6 @@ public class Enemy : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, _enemyClass.attackRadius);
     }
 
-
     #endregion
 
     #region Public Method
@@ -63,9 +72,9 @@ public class Enemy : MonoBehaviour
     {
         _enemyClass.CurHealth -= damage;
     }
-    
+
     #endregion
- 
+
     #region Private Method
 
     private IEnumerator StartExplosionAI()
@@ -120,17 +129,14 @@ public class Enemy : MonoBehaviour
             {
                 rigid.MovePosition(rigid.position + -dir * _enemyClass.speed * Time.fixedDeltaTime);
             }
-            else if (GetPlayerDistance() > _enemyClass.attackRadius * 1.5f)  
+            else if (GetPlayerDistance() > _enemyClass.attackRadius * 1.5f)
             {
                 rigid.MovePosition(rigid.position + dir * _enemyClass.speed * Time.fixedDeltaTime);
             }
             else
             {
                 Debug.Log("공격");
-                GameObject obj = Instantiate(_enemyClass._projectile.prefab, transform.position,
-                    Quaternion.LookRotation(dir));
-                obj.GetComponent<Rigidbody>().velocity = dir * _enemyClass._projectile.speed;
-                Destroy(obj, _enemyClass._projectile.destroyTime);
+                GenerateProjectile();
                 yield return new WaitForSeconds(_enemyClass.attackDelay);
             }
 
@@ -139,6 +145,55 @@ public class Enemy : MonoBehaviour
 
         OnEnemyDie();
         yield return null;
+    }
+
+
+    private IEnumerator StartBossAI()
+    {
+        while (!_enemyClass.isDie)
+        {
+            if (GetPlayerDistance() < _enemyClass.attackRadius)
+            {
+                int rand = Random.Range(0, 2);
+
+                switch (rand)
+                {
+                    case 0:
+                        rigid.AddForce(dir * _enemyClass.speed * 2, ForceMode.Impulse);
+                        Debug.Log("돌진공격");
+                        break;
+                    case 1:
+                        Debug.Log("근접공격");
+                        break;
+                }
+                
+                yield return new WaitForSeconds(_enemyClass.attackDelay);
+            }
+            else if (GetPlayerDistance() > _enemyClass.attackRadius * 1.5f)
+            {
+                Debug.Log("원거리");
+                GenerateProjectile();
+                yield return new WaitForSeconds(_enemyClass.attackDelay);
+            }
+            else
+            {
+                rigid.MovePosition(rigid.position + dir * _enemyClass.speed * Time.fixedDeltaTime);
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        OnEnemyDie();
+        yield return null;
+    }
+
+
+    void GenerateProjectile()
+    {
+        GameObject obj = Instantiate(_enemyClass._projectile.prefab, transform.position,
+            Quaternion.LookRotation(dir));
+        obj.GetComponent<Rigidbody>().velocity = dir * _enemyClass._projectile.speed;
+        Destroy(obj, _enemyClass._projectile.destroyTime);
     }
 
     private float GetPlayerDistance() => Vector3.Distance(transform.position, player.position);

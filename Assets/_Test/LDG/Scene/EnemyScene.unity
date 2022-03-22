@@ -215,7 +215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250932752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.5, y: 1, z: -8.5}
+  m_LocalPosition: {x: 3.12, y: 1, z: 1.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0932dea0f93e54ebcbe0ff97a2818c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyClass: {fileID: 11400000, guid: 58e3ce9599cda3f499d15652bca79ab3, type: 2}
+  _enemyClass: {fileID: 11400000, guid: aa42118a03fde1a428cecc316d035028, type: 2}
   player: {fileID: 1684381884}
 --- !u!54 &250932758
 Rigidbody:
