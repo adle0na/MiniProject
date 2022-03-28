@@ -8,7 +8,7 @@ public class PlayerAnimatorController : MonoBehaviour
     private Animator _animator;
     private static readonly int MovementSpeed = Animator.StringToHash("movementSpeed");
     private static readonly int Reload = Animator.StringToHash("onReload");
-    private static readonly int IsAimMode = Animator.StringToHash("isAimMode");
+    private static readonly int IsAimMode = Animator.StringToHash("IsAimMode");
 
     private void Awake()
     {
