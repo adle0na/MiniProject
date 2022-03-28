@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46751517, g: 0.9622642, b: 0.8886589, a: 0.392}
+  m_Color: {r: 0.0970096, g: 0.12849419, b: 0.18867922, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe77b47a2f7158e489dfdaca6dc63199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 2067631784}
+  weapon: {fileID: 919079531}
   textWeaponName: {fileID: 1260413369}
   imageWeaponIcon: {fileID: 397526100}
   spriteWeaponIcons:

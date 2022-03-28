@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //UpdateRotate();
-        //UpdateMove();
+        UpdateRotate();
+        UpdateMove();
         UpdateJump();
         UpdateWeaponAction();
     }
