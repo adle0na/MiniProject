@@ -8,14 +8,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyClass _enemyClass;
     private int playerLayer = 1 << 3;
     public Transform player;
+    private Transform model;
     private Rigidbody rigid;
     private Vector3 dir;
     private bool isDeteted;
+    private bool isAttack;
 
     #region Unity Method
 
     private void Awake()
     {
+        model = transform.GetChild(0);
         rigid = GetComponent<Rigidbody>();
     }
 
@@ -55,6 +58,7 @@ public class Enemy : MonoBehaviour
     {
         dir = (player.position - transform.position).normalized;
         isDeteted = GetPlayerDetected();
+        if(!isAttack) Rotation();
     }
 
     private void OnDrawGizmos()
@@ -84,7 +88,9 @@ public class Enemy : MonoBehaviour
             if (isDeteted)
             {
                 Debug.Log("발견");
+                isAttack = true;
                 yield return new WaitForSeconds(2);
+                isAttack = false;
                 Debug.Log("2초 지났고 터짐");
                 Destroy(gameObject);
             }
@@ -107,7 +113,9 @@ public class Enemy : MonoBehaviour
             if (isDeteted)
             {
                 Debug.Log("공격");
+                isAttack = true;
                 yield return new WaitForSeconds(_enemyClass.attackDelay);
+                isAttack = false;
             }
             else
             {
@@ -137,7 +145,9 @@ public class Enemy : MonoBehaviour
             {
                 Debug.Log("공격");
                 GenerateProjectile();
+                isAttack = true;
                 yield return new WaitForSeconds(_enemyClass.attackDelay);
+                isAttack = false;
             }
 
             yield return new WaitForFixedUpdate();
@@ -160,26 +170,32 @@ public class Enemy : MonoBehaviour
                 {
                     case 0:
                         rigid.AddForce(dir * _enemyClass.speed * 2, ForceMode.Impulse);
+                        isAttack = true;
                         Debug.Log("돌진공격");
                         break;
                     case 1:
+                        isAttack = true;
                         Debug.Log("근접공격");
                         break;
                 }
                 
                 yield return new WaitForSeconds(_enemyClass.attackDelay);
+                isAttack = false;
             }
             else if (GetPlayerDistance() > _enemyClass.attackRadius * 1.5f)
             {
                 Debug.Log("원거리");
                 GenerateProjectile();
+                isAttack = true;
                 yield return new WaitForSeconds(_enemyClass.attackDelay);
+                isAttack = false;
             }
             else
             {
                 rigid.MovePosition(rigid.position + dir * _enemyClass.speed * Time.fixedDeltaTime);
             }
-
+            
+            
             yield return new WaitForFixedUpdate();
         }
 
@@ -187,6 +203,13 @@ public class Enemy : MonoBehaviour
         yield return null;
     }
 
+    void Rotation()
+    {
+        Vector3 rotDir = player.position - transform.position;
+        rotDir.y = 0;
+        rigid.rotation = Quaternion.Lerp(model.rotation,
+            Quaternion.LookRotation(rotDir), 0.3f);
+    }
 
     void GenerateProjectile()
     {
