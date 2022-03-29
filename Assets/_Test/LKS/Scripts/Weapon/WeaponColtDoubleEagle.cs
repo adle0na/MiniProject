@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -174,7 +175,10 @@ public class WeaponColtDoubleEagle : MonoBehaviour
             // 무기 애니메이션 재생 (모드에 따라 AimFire 혹은 Fire 애니메이션 재생)
             // animator.Play("Fire",-1,0);
             string animationName = _animator.AimModeIs == true ? "Pistol_AimFire" : "Fire";
-            _animator.Play(animationName, 0, 0);
+            _animator.Play(animationName, -1, 0);
+            
+            // 자 드가자
+            _mainCamera.DOShakeRotation(0.3f, 0.3f);
             // 총구 이펙트 재생
             //if(!animator.AimModeIs) StartCoroutine(OnMuzzleFlashEffect());
             // 공격 사운드 재생
