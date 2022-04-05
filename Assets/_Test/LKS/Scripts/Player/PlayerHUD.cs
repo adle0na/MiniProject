@@ -69,7 +69,9 @@ public class PlayerHUD : MonoBehaviour
 
     private void UpdateAmmoHUD(int currentAmmo, int maxAmmo)
     {
-        imageAmmo.DOFillAmount((float) currentAmmo / maxAmmo, 0.3f);
+        float fillAmount = maxAmmo != 0 ? (float) currentAmmo / maxAmmo : 1;
+
+        imageAmmo.DOFillAmount(fillAmount, 0.3f);
 
         textAmmo.DOText($"<size=40>{currentAmmo}/</size>{maxAmmo}", 0.3f, true, ScrambleMode.All);
     }
