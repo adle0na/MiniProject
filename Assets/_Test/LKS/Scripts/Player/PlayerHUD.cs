@@ -9,11 +9,15 @@ using TMPro;
 public class PlayerHUD : MonoBehaviour
 {
     [Header("Components")] [SerializeField]
-    private WeaponColtDoubleEagle weapon; // 현재 정보가 출력되는 무기
+    private WeaponBase weapon; // 현재 정보가 출력되는 무기
+
+    [Header("Components")] [SerializeField]
+    private Status status;
 
     [Header("Weapon Base")] [SerializeField]
     private TextMeshProUGUI textWeaponName; // 무기 이름
     [SerializeField] private Image imageWeaponIcon; // 무기 아이콘
+    [SerializeField] private Image imageWeaponAmmoIcon; // 사용한 만큼 비는 무기 아이콘
     [SerializeField] private Sprite[] spriteWeaponIcons; // 무기 아이콘에 사용되는 sprite 배열
 
     [Header("Ammo")] 
@@ -23,24 +27,44 @@ public class PlayerHUD : MonoBehaviour
     [Header("Magazine")] [SerializeField] 
     private GameObject magazineUIPrefab; // 탄창 UI 프리펩
     [SerializeField] private Transform magazineParent; // 탄창 UI가 배치되는 Panel
+    [SerializeField] private int maxMagazineCount; // 처음 생성하는 최대 탄창 수
 
     private List<GameObject> _magazineList; // 탄창 UI 리스트
+    
+    [Header("HP & BloodScreen UI")] [SerializeField]
+    private TextMeshProUGUI textHp; // 플레이어의 체력을 출력하는 text
+    [SerializeField] private Image imageBloodScreen; // 플레이어가 공격받았을 때 화면에 표시되는 image
+    [SerializeField] private AnimationCurve curveBloodScreen;
 
     private void Awake()
     {
-        SetupWeapon();
+        status.onHPEvent.AddListener(UpdateHPHUD);
+    }
+
+    public void SetupAllWeapons(WeaponBase[] weapons)
+    {
         SetupMagazine();
         
-        // 메소드가 등록되어 있는 이벤트 클래스(weapon.xx)의
-        // Invoke() 메소드가 호출될 때 등록된 메소드(매개변수)가 실행된다
-        weapon.onAmmoEvent.AddListener(UpdateAmmoHUD);
-        weapon.onMagazineEvent.AddListener(UpdateMagazineHUD);
+        // 사용 가능한 모든 무기의 이번트 등록
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i].onAmmoEvent.AddListener(UpdateAmmoHUD);
+            weapons[i].onMagazineEvent.AddListener(UpdateMagazineHUD);
+        }
+    }
+
+    public void SwitchingWeapon(WeaponBase newWeapon)
+    {
+        weapon = newWeapon;
+        
+        SetupWeapon();
     }
 
     private void SetupWeapon()
     {
         textWeaponName.text = weapon.WeaponName.ToString();
-        imageWeaponIcon.sprite = spriteWeaponIcons[(int) weapon.WeaponName];
+        imageWeaponIcon.sprite = spriteWeaponIcons[(int) weapon.weaponType];
+        imageWeaponAmmoIcon.sprite = spriteWeaponIcons[(int) weapon.weaponType];
     }
 
     private void UpdateAmmoHUD(int currentAmmo, int maxAmmo)
@@ -58,7 +82,7 @@ public class PlayerHUD : MonoBehaviour
         ColorUtility.TryParseHtmlString("#00F0A5", out Color color);
         
         _magazineList = new List<GameObject>();
-        for (int i = 0; i < weapon.MaxMagazine; ++i)
+        for (int i = 0; i < maxMagazineCount; ++i)
         {
             GameObject clone = Instantiate(magazineUIPrefab);
             clone.transform.SetParent(magazineParent);
@@ -68,11 +92,11 @@ public class PlayerHUD : MonoBehaviour
         }
         
         // weapon에 등록되어 있는 현재 탄창 개수만큼 오브젝트 활성화
-        for (int i = 0; i < weapon.CurrentMagazine; ++i)
-        {
-            _magazineList[i].GetComponent<Image>().color = color;
-            _magazineList[i].SetActive(true);
-        }
+        // for (int i = 0; i < weapon.CurrentMagazine; ++i)
+        // {
+        //     _magazineList[i].GetComponent<Image>().color = color;
+        //     _magazineList[i].SetActive(true);
+        // }
     }
 
     private void UpdateMagazineHUD(int currentMagazine)
@@ -94,6 +118,35 @@ public class PlayerHUD : MonoBehaviour
             var j = i;
             _magazineList[i].GetComponent<Image>().DOColor(color, 0.3f)
                 .OnComplete(() => _magazineList[j].SetActive(true));
+        }
+    }
+    
+    private void UpdateHPHUD(int previous, int current)
+    {
+        textHp.text = $"HP {current}";
+        
+        // 체력이 증가했을 때는 화면에 빨간색 이미지를 출력하지 않도록 return
+        if (previous <= current) return;
+
+        if (previous - current > 0)
+        {
+            StopCoroutine(OnBloodScreen());
+            StartCoroutine(OnBloodScreen());
+        }
+    }
+
+    private IEnumerator OnBloodScreen()
+    {
+        float percent = 0;
+        while (percent < 1)
+        {
+            percent += Time.deltaTime;
+
+            Color color = imageBloodScreen.color;
+            color.a = Mathf.Lerp(1, 0, curveBloodScreen.Evaluate(percent));
+            imageBloodScreen.color = color;
+
+            yield return null;
         }
     }
 }
