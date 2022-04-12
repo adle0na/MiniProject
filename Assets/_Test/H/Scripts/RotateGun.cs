@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RotateGun : MonoBehaviour
 {
+    /*
     public GrapplingGun grappling;
 
     private Quaternion desiredRotation;
@@ -16,5 +17,6 @@ public class RotateGun : MonoBehaviour
         transform.LookAt(grappling.GetGrapplePoint());
 
     }
+    */
 
 }
