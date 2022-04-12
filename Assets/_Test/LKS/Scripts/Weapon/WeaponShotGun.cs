@@ -30,8 +30,6 @@ public class WeaponShotGun : WeaponBase
         // impactMemoryPool = GetComponent<ImpactMemoryPool>();
         _mainCamera = Camera.main;
 
-        // 처음 탄창 수는 최대로 설정
-        weaponSetting.currentMagazine = weaponSetting.maxMagazine;
         // 처음 탄 수는 최대로 설정
         weaponSetting.currentAmmo = weaponSetting.maxAmmo;
     }
@@ -43,8 +41,6 @@ public class WeaponShotGun : WeaponBase
         // // 총구 이펙트 오브젝트 비활성화
         // muzzleFlashEffect.SetActive(false);
 
-        // 무기가 활성화될 때 해당 무기의 탄창 정보를 갱신한다
-        onMagazineEvent.Invoke(weaponSetting.currentMagazine);
         // 무기가 활성화될 때 해당 무기의 탄 수 정보를 갱신한다
         onAmmoEvent.Invoke(weaponSetting.currentAmmo, weaponSetting.maxAmmo);
 
@@ -86,8 +82,8 @@ public class WeaponShotGun : WeaponBase
     public override void StartReload()
     {
         // 현재 재장전 중이면 재장전 불가능
-        if (isReload || weaponSetting.currentMagazine <= 0 ||
-            weaponSetting.currentAmmo == weaponSetting.maxAmmo) return;
+        if (weaponSetting.currentAmmo == weaponSetting.maxAmmo) return;
+        if (isReload) return;
 
         // 무기 액션 도중에 'R'키를 눌러 재장전을 시도하면 무기 액션 종료 후 재장전
         StopWeaponAction();
@@ -99,12 +95,6 @@ public class WeaponShotGun : WeaponBase
     {
         if (Time.time - lastAttackTime > weaponSetting.attackRate)
         {
-            // 뛰고있을 때는 공격할 수 없다.
-            if (animator.MoveSpeed > 0.5f)
-            {
-                return;
-            }
-
             // 공격주기가 되어가 공격할 수 있도록 하기 위해 현재 시간 저장
             lastAttackTime = Time.time;
 
@@ -147,10 +137,6 @@ public class WeaponShotGun : WeaponBase
         yield return new WaitForSeconds(weaponSetting.reloadTime);
 
         isReload = false;
-
-        // 현재 탄창 수를 1 감소시키고, 바뀐 탄창 정보를 Text UI에 업데이트
-        weaponSetting.currentMagazine--;
-        onMagazineEvent.Invoke(weaponSetting.currentMagazine);
 
         // 현재 탄 수를 최대로 설정하고, 바뀐 탄 수 정보를 Text UI에 업데이트
         weaponSetting.currentAmmo = weaponSetting.maxAmmo;

@@ -12,8 +12,6 @@ public class WeaponThrow : WeaponBase
 
     private void OnEnable()
     {
-        // 무기가 활성화될 때 해당 무기의 탄창 정보를 갱신한다
-        onMagazineEvent.Invoke(weaponSetting.currentMagazine);
         // 무기가 활성화될 때 무기의 탄 수 정보를 갱신한다
         onAmmoEvent.Invoke(weaponSetting.currentAmmo, weaponSetting.maxAmmo);
     }
@@ -22,8 +20,6 @@ public class WeaponThrow : WeaponBase
     {
         base.SetUp();
 
-        // 처음 탄창 수는 최대로 설정
-        weaponSetting.currentMagazine = weaponSetting.maxMagazine;
         // 처음 탄 수는 최대로 설정
         weaponSetting.currentAmmo = weaponSetting.maxAmmo;
     }
@@ -75,16 +71,6 @@ public class WeaponThrow : WeaponBase
         grenadeClone.GetComponent<WeaponGrenadeProjectile>().Setup(weaponSetting.damage, transform.parent.forward);
 
         weaponSetting.currentAmmo--;
-        onAmmoEvent.Invoke(weaponSetting.currentAmmo, weaponSetting.maxAmmo);
-    }
-
-    public override void IncreaseMagazine(int ammo)
-    {
-        // 수류탄은 탄창이 따로 없고, 탄수(Ammo)를 수류탄 개수로 사용하기 때문에 탄 수를 증가시킨다.
-        weaponSetting.currentAmmo =
-            weaponSetting.currentAmmo + ammo > weaponSetting.maxAmmo
-                ? weaponSetting.maxAmmo
-                : weaponSetting.currentAmmo + ammo;
         onAmmoEvent.Invoke(weaponSetting.currentAmmo, weaponSetting.maxAmmo);
     }
 }

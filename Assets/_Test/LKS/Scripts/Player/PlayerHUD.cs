@@ -24,11 +24,6 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private Image imageAmmo;
     [SerializeField] private TextMeshProUGUI textAmmo; // 현재/최대 탄 수 출력 text
 
-    [Header("Magazine")]
-    //[SerializeField] private GameObject magazineUIPrefab; // 탄창 UI 프리펩
-    [SerializeField] private Transform magazineParent; // 탄창 UI가 배치되는 Panel
-    [SerializeField] private int maxMagazineCount; // 처음 생성하는 최대 탄창 수
-
     private List<GameObject> _magazineList; // 탄창 UI 리스트
     
     [Header("HP & BloodScreen UI")] [SerializeField]
@@ -49,7 +44,6 @@ public class PlayerHUD : MonoBehaviour
         for (int i = 0; i < weapons.Length; i++)
         {
             weapons[i].onAmmoEvent.AddListener(UpdateAmmoHUD);
-            weapons[i].onMagazineEvent.AddListener(UpdateMagazineHUD);
         }
     }
 

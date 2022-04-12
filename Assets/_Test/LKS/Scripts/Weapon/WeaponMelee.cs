@@ -10,8 +10,6 @@ public class WeaponMelee : WeaponBase
     {
         isAttack = false;
         
-        // 무기가 활성화될 때 해당 무기의 탄창 정보를 갱신한다
-        onMagazineEvent.Invoke(weaponSetting.currentMagazine);
         // 무기가 활성화될 때 해당 무기의 탄 수 정보를 갱신한다
         onAmmoEvent.Invoke(weaponSetting.currentAmmo, weaponSetting.maxAmmo);
     }
@@ -20,8 +18,6 @@ public class WeaponMelee : WeaponBase
     {
         base.SetUp();
 
-        // 처음 탄창 수는 최대로 설정
-        weaponSetting.currentMagazine = weaponSetting.maxMagazine;
         // 처음 탄 수는 최대로 설정
         weaponSetting.currentAmmo = weaponSetting.maxAmmo;
     }

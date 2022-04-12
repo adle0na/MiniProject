@@ -7,9 +7,6 @@ public enum WeaponType { HandGun = 0, Rifle, ShotGun, Melee, Throw,  }
 [System.Serializable]
 public class AmmoEvent : UnityEngine.Events.UnityEvent<int, int> { }
 
-[System.Serializable]
-public class MagazineEvent : UnityEngine.Events.UnityEvent<int> { }
-
 public abstract class WeaponBase : MonoBehaviour
 {
     [Header("Weapon Base")] [SerializeField]
@@ -25,13 +22,10 @@ public abstract class WeaponBase : MonoBehaviour
     
     // 외부에서 이벤트 함수 등록을 할 수 있도록 public 선언
     [HideInInspector] public AmmoEvent onAmmoEvent = new AmmoEvent();
-    [HideInInspector] public MagazineEvent onMagazineEvent = new MagazineEvent();
-    
+
     // 외부에서 필요한 정보를 열람하기 위해 정의한 Get Property
     public PlayerAnimatorController Animator => animator;
     public WeaponName WeaponName => weaponSetting.weaponName;
-    public int CurrentMagazine => weaponSetting.currentMagazine;
-    public int MaxMagazine => weaponSetting.maxMagazine;
 
     public abstract void StartWeaponAction(int type = 0);
     public abstract void StopWeaponAction(int type = 0);
@@ -48,12 +42,5 @@ public abstract class WeaponBase : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<PlayerAnimatorController>();
-    }
-
-    public virtual void IncreaseMagazine(int magazine)
-    {
-        weaponSetting.currentMagazine =
-            CurrentMagazine + magazine > MaxMagazine ? MaxMagazine : CurrentMagazine + magazine;
-        onMagazineEvent.Invoke(CurrentMagazine);
     }
 }
