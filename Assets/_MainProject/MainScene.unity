@@ -19791,15 +19791,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 453866695140981351, guid: f013f78d2afe6ed4387f37520566b975, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1807443808176623191, guid: f013f78d2afe6ed4387f37520566b975, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1807443808458660564, guid: f013f78d2afe6ed4387f37520566b975, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1807443808962665559, guid: f013f78d2afe6ed4387f37520566b975, type: 3}
       propertyPath: m_LocalPosition.y
