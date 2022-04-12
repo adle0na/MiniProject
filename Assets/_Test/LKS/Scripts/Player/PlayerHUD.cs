@@ -24,8 +24,8 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private Image imageAmmo;
     [SerializeField] private TextMeshProUGUI textAmmo; // 현재/최대 탄 수 출력 text
 
-    [Header("Magazine")] [SerializeField] 
-    private GameObject magazineUIPrefab; // 탄창 UI 프리펩
+    [Header("Magazine")]
+    //[SerializeField] private GameObject magazineUIPrefab; // 탄창 UI 프리펩
     [SerializeField] private Transform magazineParent; // 탄창 UI가 배치되는 Panel
     [SerializeField] private int maxMagazineCount; // 처음 생성하는 최대 탄창 수
 
@@ -82,7 +82,7 @@ public class PlayerHUD : MonoBehaviour
         // magazineParent 오브젝트의 자식으로 등록 후 모두 비활성화/리스트에 저장
         
         ColorUtility.TryParseHtmlString("#00F0A5", out Color color);
-        
+        /*
         _magazineList = new List<GameObject>();
         for (int i = 0; i < maxMagazineCount; ++i)
         {
@@ -92,6 +92,7 @@ public class PlayerHUD : MonoBehaviour
             
             _magazineList.Add(clone);
         }
+        */
         
         // weapon에 등록되어 있는 현재 탄창 개수만큼 오브젝트 활성화
         // for (int i = 0; i < weapon.CurrentMagazine; ++i)
