@@ -1,79 +1,65 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEnemyData",menuName = "GameData/EnemyData")]
-public class EnemyClass : ScriptableObject
+namespace _Test.LDG.Script
 {
-    private EnemyClass _enemyClass;
-    public EnemyClass EnemyClassBase
+    [CreateAssetMenu(fileName = "NewEnemyData", menuName = "GameData/EnemyData")]
+    public class EnemyClass : ScriptableObject
     {
-        get
+        [Serializable]
+        public class ProjectilePrefab
         {
-            _enemyClass = this;
-            return Instantiate(_enemyClass);
+            public GameObject prefab;
+            public float speed;
+            public float destroyTime;
         }
-    }
-    
-    public EnemyAttackType EnemyAttackType;
-    public EnemyEnhanceType EnemyEnhanceType;
 
-    [Tooltip("최대 체력")]
-    public int maxHealth;
-    [Tooltip("현재 체력")]
-    private int curHealth;
-
-    public int CurHealth
-    {
-        set
+        public void Initialize()
         {
-            curHealth = value;
-            if (curHealth <= 0)
-                isDie = true;
+            curHealth = maxHealth;
         }
-        get => curHealth;
-    }
     
-    [Tooltip("공격력")]
-    public int damage;
-    [Tooltip("공격 대기시간")]
-    public float attackDelay;
-    [Tooltip("공격 범위")]
-    public float attackRadius;
-    [Tooltip("이동 속도")]
-    public float speed;
-    [Tooltip("드랍 아이템")]
-    public GameObject[] dropItems;
+        [SerializeField] private EnemyType enemyType = EnemyType.Melee;
+        [Tooltip("최대 체력")] [SerializeField] private int maxHealth = 100;
+        [Tooltip("공격력")] [SerializeField] private int attackPower = 1;
+        [Tooltip("공격 대기시간")] [SerializeField] private float attackDelay = 1;
+        [Tooltip("공격 범위")] [SerializeField] private float attackRadius = 3;
+        [Tooltip("탐지 범위")] [SerializeField] private float detectRadius = 6;
+        [Tooltip("이동 속도")] [SerializeField] private float speed = 3;
+        [Tooltip("드랍 아이템")] [SerializeField] private GameObject[] dropItems = new GameObject[0];
+        [Tooltip("발사체 정보")] [SerializeField] private ProjectilePrefab projectile = new ProjectilePrefab();
+    
+        private int curHealth = 100;
+        private bool isDead = false;
+        
+        public event Action OnDeaded;
 
-    internal bool isDie = false;
+        public void HitHealth(float damage)
+        {
+            curHealth -= Mathf.RoundToInt(damage);
+            if (curHealth > 0) { return; }
+            OnDeaded?.Invoke();
+        }
+        
+        public EnemyType EnemyType => enemyType;
+        public int MaxHealth => maxHealth;
+        public int AttackPower => attackPower;
+        public float AttackDelay => attackDelay;
+        public float AttackRadius => attackRadius;
+        public float DetectRadius => detectRadius;
+        public float Speed => speed;
+        public GameObject[] DropItems => dropItems;
+        public ProjectilePrefab Projectile => projectile;
+        public int CurHealth => curHealth;
+        public bool IsDead => isDead;
 
-    public void SpecialEnemy(float value = 1.5f)
+    }
+
+    public enum EnemyType
     {
-        maxHealth = Mathf.RoundToInt(maxHealth * value);
-        curHealth = Mathf.RoundToInt(curHealth * value);
-        damage = Mathf.RoundToInt(damage * value);
+        Melee,
+        Projectile,
+        Explosion,
+        Boss
     }
-
-    public ProjectilePrefab _projectile;
-    
-    [Serializable]
-    public class ProjectilePrefab
-    {
-        public GameObject prefab;
-        public float speed;
-        public float destroyTime;
-    }
-}
-
-public enum EnemyAttackType
-{
-    Mlee,
-    Projectile,
-    Explosion
-}
-    
-public enum EnemyEnhanceType
-{
-    Normal,
-    Special,
-    Boss
 }
