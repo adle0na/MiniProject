@@ -770,11 +770,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807443809340411049}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0000000037252903, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0.0000000026341782, z: -0.0000000026341782, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.3333328, y: 1, z: 3.333333}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7338142288630156974}
+  m_Father: {fileID: 1898318492318193548}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1807443809340411046
@@ -1006,6 +1006,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1807443808176654576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807443808176623191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708e06dd3df7ce341baddd1453de9b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1807443808176654580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,8 +1036,6 @@ MonoBehaviour:
     weaponName: 0
     damage: 7
     reloadTime: 2
-    currentMagazine: 8
-    maxMagazine: 8
     currentAmmo: 6
     maxAmmo: 6
     attackRate: 0.5
@@ -1034,27 +1044,12 @@ MonoBehaviour:
   onAmmoEvent:
     m_PersistentCalls:
       m_Calls: []
-  onMagazineEvent:
-    m_PersistentCalls:
-      m_Calls: []
   casingSpawnPoint: {fileID: 1807443808045226193}
   bulletSpawnPoint: {fileID: 1807443809166612018}
   audioClipTakeOutWeapon: {fileID: 8300000, guid: 0952dfbcc6971b74c9795d3d738efc5f, type: 3}
   audioClipFire: {fileID: 8300000, guid: 77ee24acec57ea14c98181aba1755002, type: 3}
   audioClipReload: {fileID: 8300000, guid: b0359666442685f48bcb0259319832cc, type: 3}
   imageAim: {fileID: 0}
---- !u!114 &1807443808176654576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807443808176623191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 708e06dd3df7ce341baddd1453de9b34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1807443808458759284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1257,18 +1252,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1807443807883131108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807443808458660564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 708e06dd3df7ce341baddd1453de9b34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1807443807883130911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1287,8 +1270,6 @@ MonoBehaviour:
     weaponName: 3
     damage: 3
     reloadTime: 1
-    currentMagazine: 5
-    maxMagazine: 5
     currentAmmo: 2
     maxAmmo: 2
     attackRate: 1
@@ -1297,14 +1278,23 @@ MonoBehaviour:
   onAmmoEvent:
     m_PersistentCalls:
       m_Calls: []
-  onMagazineEvent:
-    m_PersistentCalls:
-      m_Calls: []
   shotGunHitCount: 15
   bulletSpawnPoint: {fileID: 1807443808191871818}
   audioClipTakeOutWeapon: {fileID: 8300000, guid: 0952dfbcc6971b74c9795d3d738efc5f, type: 3}
   audioClipFire: {fileID: 8300000, guid: 77ee24acec57ea14c98181aba1755002, type: 3}
   audioClipReload: {fileID: 8300000, guid: 4c8174d4d490b8142af48b91ef979a91, type: 3}
+--- !u!114 &1807443807883131108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807443808458660564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708e06dd3df7ce341baddd1453de9b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1807443808997204773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1535,18 +1525,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1807443808997204770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453866695140981351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 708e06dd3df7ce341baddd1453de9b34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1807443808997204769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1565,8 +1543,6 @@ MonoBehaviour:
     weaponName: 6
     damage: 50
     reloadTime: 0
-    currentMagazine: 0
-    maxMagazine: 0
     currentAmmo: 0
     maxAmmo: 2
     attackRate: 0
@@ -1575,12 +1551,21 @@ MonoBehaviour:
   onAmmoEvent:
     m_PersistentCalls:
       m_Calls: []
-  onMagazineEvent:
-    m_PersistentCalls:
-      m_Calls: []
   audioClipFire: {fileID: 8300000, guid: 02996b1a0ddde9c4dac0e4bf847ee1d7, type: 3}
   grenadePrefab: {fileID: 2258873846709082434, guid: 5254d626b4859d140b8f019cb539481a, type: 3}
   grenadeSpawnPoint: {fileID: 5677769742619137382}
+--- !u!114 &1807443808997204770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453866695140981351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708e06dd3df7ce341baddd1453de9b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1807443809085422596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1692,9 +1677,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6784351226688322792, guid: da5a94aa767e30b4ca7f890fc02d6550, type: 3}
   m_PrefabInstance: {fileID: 1807443809085422596}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7338142288630156974 stripped
+--- !u!4 &1898318492318193548 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8990034887051408042, guid: da5a94aa767e30b4ca7f890fc02d6550, type: 3}
+  m_CorrespondingSourceObject: {fileID: 237980552063200136, guid: da5a94aa767e30b4ca7f890fc02d6550, type: 3}
   m_PrefabInstance: {fileID: 1807443809085422596}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &1807443807256427352
@@ -1812,18 +1797,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1807443807256427355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7657370185224672823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 708e06dd3df7ce341baddd1453de9b34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1807443807256427353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,8 +1815,6 @@ MonoBehaviour:
     weaponName: 5
     damage: 100
     reloadTime: 0
-    currentMagazine: 0
-    maxMagazine: 0
     currentAmmo: 0
     maxAmmo: 0
     attackRate: 0
@@ -1852,10 +1823,19 @@ MonoBehaviour:
   onAmmoEvent:
     m_PersistentCalls:
       m_Calls: []
-  onMagazineEvent:
-    m_PersistentCalls:
-      m_Calls: []
   weaponKnifeCollider: {fileID: 1807443809340411048}
+--- !u!114 &1807443807256427355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7657370185224672823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708e06dd3df7ce341baddd1453de9b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1807443809180340509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2058,6 +2038,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1807443809180340505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807443809180440509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708e06dd3df7ce341baddd1453de9b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1807443809180340506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2076,8 +2068,6 @@ MonoBehaviour:
     weaponName: 2
     damage: 30
     reloadTime: 2
-    currentMagazine: 10
-    maxMagazine: 10
     currentAmmo: 1
     maxAmmo: 1
     attackRate: 1
@@ -2086,24 +2076,9 @@ MonoBehaviour:
   onAmmoEvent:
     m_PersistentCalls:
       m_Calls: []
-  onMagazineEvent:
-    m_PersistentCalls:
-      m_Calls: []
   casingSpawnPoint: {fileID: 0}
   bulletSpawnPoint: {fileID: 1807443807702573682}
   audioClipTakeOutWeapon: {fileID: 8300000, guid: 0952dfbcc6971b74c9795d3d738efc5f, type: 3}
   audioClipFire: {fileID: 8300000, guid: 39cb09f5cf295364ba603bc6a9cca08f, type: 3}
   audioClipReload: {fileID: 8300000, guid: 4c8174d4d490b8142af48b91ef979a91, type: 3}
   imageAim: {fileID: 0}
---- !u!114 &1807443809180340505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807443809180440509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 708e06dd3df7ce341baddd1453de9b34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
