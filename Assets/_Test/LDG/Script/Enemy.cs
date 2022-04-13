@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
 namespace _Test.LDG.Script
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, IAttackAble
     {
         private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger");
         private static readonly int DeadTrigger = Animator.StringToHash("DeadTrigger");
@@ -20,8 +20,8 @@ namespace _Test.LDG.Script
         [SerializeField] private Animator anim;
         [SerializeField] private EnemyAnimAttack animAttack;
         [SerializeField] private Transform firePoint;
-        [SerializeField] private Transform target;
 
+        private Transform target;
         private bool isAttack = false;
         private IDisposable moveCallBack;
 
@@ -35,7 +35,8 @@ namespace _Test.LDG.Script
             Observable.FromCoroutine(AnimEndChecker)
                 .Subscribe(
                     _ => Debug.Log("AnimCheck"),
-                    Initialized);
+                    Initialized)
+                .AddTo(gameObject);
         }
 
         private void OnDestroy()
@@ -58,8 +59,12 @@ namespace _Test.LDG.Script
         private void Initialized()
         {
             GameObject obj = GameObject.FindWithTag("Player");
-            if(obj == null) { OnDead(); return; }
-            
+            if (obj == null)
+            {
+                OnDead();
+                return;
+            }
+
             target = obj.transform;
 
             enemyClass.OnDeaded += OnDead;
@@ -67,34 +72,34 @@ namespace _Test.LDG.Script
             switch (enemyClass.EnemyType)
             {
                 case EnemyType.Melee:
-                    
+
                     animAttack.OnAttackAnim += MeleeAttack;
-                    
+
                     Observable.FromCoroutine(MeleeEnemyRoutine)
                         .Subscribe()
                         .AddTo(gameObject);
-                    
+
                     break;
                 case EnemyType.Explosion:
-                    
+
                     animAttack.OnAttackAnim += ExplosionAttack;
-                    
+
                     Observable.FromCoroutine(ExplosionEnemyRoutine)
                         .Subscribe()
                         .AddTo(gameObject);
-                    
+
                     break;
                 case EnemyType.Projectile:
-                    
+
                     animAttack.OnAttackAnim += ProjectileAttack;
-                    
+
                     Observable.FromCoroutine(ProjectileEnemyRoutine)
                         .Subscribe()
                         .AddTo(gameObject);
-                    
+
                     break;
                 case EnemyType.Boss:
-                    
+
                     break;
                 default: throw new ArgumentOutOfRangeException();
             }
@@ -105,58 +110,65 @@ namespace _Test.LDG.Script
             while (!enemyClass.IsDead)
             {
                 yield return null;
-                
-                if (isAttack) { continue; }
 
-                if (AttackRadius() < enemyClass.AttackRadius) 
+                if (isAttack)
+                {
+                    continue;
+                }
+
+                if (AttackRadius() < enemyClass.AttackRadius)
                     StartAttackMotion();
                 else
                     GoTo(target.position);
             }
         }
-        
+
         private IEnumerator ProjectileEnemyRoutine()
         {
             while (!enemyClass.IsDead)
             {
                 yield return null;
-                
-                if (isAttack) { continue; }
-                
+
+                if (isAttack)
+                {
+                    continue;
+                }
+
                 if (AttackRadius() < enemyClass.AttackRadius)
                     StartAttackMotion();
                 else
                     GoTo(target.position);
-                
             }
         }
-        
+
         private IEnumerator ExplosionEnemyRoutine()
         {
             while (!enemyClass.IsDead)
             {
                 yield return null;
-                
-                if (isAttack) { continue; }
-                
+
+                if (isAttack)
+                {
+                    continue;
+                }
+
                 if (AttackRadius() < enemyClass.AttackRadius)
                     StartAttackMotion();
                 else
                     GoTo(target.position);
-                
             }
         }
 
         private void StartAttackMotion()
         {
             transform.LookAt(target.position);
-            
+
             isAttack = true;
 
             anim.SetTrigger(AttackTrigger);
 
             agent.ResetPath();
-            
+
             Observable.Timer(TimeSpan.FromSeconds(enemyClass.AttackDelay))
                 .Subscribe(_ => isAttack = false);
         }
@@ -166,22 +178,22 @@ namespace _Test.LDG.Script
             moveCallBack?.Dispose();
 
             anim.SetBool(IsRun, true);
-            
+
             agent.SetDestination(pos);
 
             moveCallBack = this.UpdateAsObservable()
                 .Select(_ => agent.remainingDistance)
                 .Where(x => x < agent.stoppingDistance)
-                .Subscribe(_=> Stop())
+                .Subscribe(_ => Stop())
                 .AddTo(gameObject);
         }
-        
+
         private void Stop()
         {
             moveCallBack?.Dispose();
-            
+
             anim.SetBool(IsRun, false);
-            
+
             agent.ResetPath();
         }
 
@@ -189,37 +201,70 @@ namespace _Test.LDG.Script
         {
             foreach (var collider in Physics.OverlapSphere(transform.position, enemyClass.AttackRadius, attackLayer))
             {
-                Debug.Log($"{collider.name}에게 {enemyClass.AttackPower}피해를 입혔다");
+                if (collider.TryGetComponent<IAttackAble>(out IAttackAble attackAble))
+                    AttackTarget(attackAble);
             }
         }
 
         private void ProjectileAttack()
         {
             GameObject obj = Instantiate(enemyClass.Projectile.prefab, firePoint.position, transform.rotation);
-            obj.GetComponent<Rigidbody>().velocity = transform.forward * enemyClass.Projectile.speed;
+
+            ProjectileEventer eventer = obj.GetComponent<ProjectileEventer>();
+            eventer.GetRigidBody().velocity = transform.forward * enemyClass.Projectile.speed;
+            eventer.OnHitTarget += AttackTarget;
+            eventer.OnDestroyProjectile += DisposeProjectileEvent;
         }
 
         private void ExplosionAttack()
         {
             foreach (var collider in Physics.OverlapSphere(transform.position, enemyClass.AttackRadius, attackLayer))
             {
-                Debug.Log($"{collider.name}에게 {enemyClass.AttackPower}피해를 입혔다");
+                if (collider.TryGetComponent<IAttackAble>(out IAttackAble attackAble))
+                    AttackTarget(attackAble);
             }
         }
-        
-        private float AttackRadius() => Vector3.Distance(transform.position, target.position);
 
         private void OnDead()
-        { 
+        {
             anim.SetTrigger(DeadTrigger);
         }
 
         private void OnDrawGizmos()
         {
-            if(!isAttack) { return; }
-            
+            if (!isAttack)
+            {
+                return;
+            }
+
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, enemyClass.AttackRadius);
         }
+
+        private void AttackTarget(IAttackAble attackAble)
+        {
+            attackAble.DamagedHealth(enemyClass.AttackPower);
+        }
+
+        private void DisposeProjectileEvent(ProjectileEventer eventer)
+        {
+            eventer.OnHitTarget -= AttackTarget;
+            eventer.OnDestroyProjectile -= DisposeProjectileEvent;
+        }
+
+
+        public void DamagedHealth(float value)
+        {
+            
+        }
+
+        public void HealedHealth(float value)
+        {
+            
+        }
+
+        private float AttackRadius() => Vector3.Distance(transform.position, target.position);
+
+        public EnemyClass GetEnemyClass() => enemyClass;
     }
 }

@@ -1,11 +1,12 @@
 using System.Collections;
+using _Test.LDG.Script;
 using UnityEngine;
 
 namespace TestLDG
 {
-    public class TestPlayer : MonoBehaviour
+    public class TestPlayer : MonoBehaviour,IAttackAble
     {
-        public Vector3 P1;
+        /*public Vector3 P1;
         public Vector3 P2;
 
         private void Start()
@@ -38,6 +39,16 @@ namespace TestLDG
                 
             }
 
+        }*/
+
+        public void DamagedHealth(float value)
+        {
+            Debug.Log($"{value}만큼 아프다");
+        }
+
+        public void HealedHealth(float value)
+        {
+            
         }
     }
     

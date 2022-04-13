@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 752025183220226232}
   - component: {fileID: -2960320197014179148}
   - component: {fileID: -2427178503058956778}
+  - component: {fileID: 6347151701822448296}
   m_Layer: 0
   m_Name: Enemy Base
   m_TagString: Untagged
@@ -76,8 +77,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   animAttack: {fileID: 0}
   firePoint: {fileID: 0}
-  testTarget: {fileID: 0}
-  isAttack: 0
 --- !u!114 &-2960320197014179148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,3 +101,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb5e5014f40d6948815a7be8b174ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &6347151701822448296
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752025183220226234}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.75, z: 0}

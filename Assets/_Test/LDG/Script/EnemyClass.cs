@@ -40,7 +40,14 @@ namespace _Test.LDG.Script
             if (curHealth > 0) { return; }
             OnDeaded?.Invoke();
         }
-        
+
+        public void UpgradeEnemy(float value)
+        {
+            int toIntValue = (int) value;
+            curHealth = maxHealth *= toIntValue;
+            attackPower *= (int) toIntValue;
+        }
+
         public EnemyType EnemyType => enemyType;
         public int MaxHealth => maxHealth;
         public int AttackPower => attackPower;

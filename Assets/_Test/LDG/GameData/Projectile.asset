@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 1
   maxHealth: 50
-  attackPower: 1
+  attackPower: 5
   attackDelay: 2
   attackRadius: 10
   detectRadius: 6
