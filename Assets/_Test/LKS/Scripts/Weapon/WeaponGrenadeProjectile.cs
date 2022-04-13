@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Test.LDG.Script;
 using UnityEngine;
 
 public class WeaponGrenadeProjectile : MonoBehaviour
@@ -31,7 +32,7 @@ public class WeaponGrenadeProjectile : MonoBehaviour
         foreach (Collider hit in colliders)
         {
             // 폭발 범위에 부딪힌 오브젝트가 플레이어일 때 처리
-            PlayerController player = hit.GetComponent<PlayerController>();
+            IAttackAble player = hit.GetComponent<IAttackAble>();
             if (player != null)
             {
                 player.TakeDamage((int) (explosionDamage * 0.2f));

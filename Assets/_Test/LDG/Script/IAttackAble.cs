@@ -2,7 +2,6 @@
 {
     public interface IAttackAble
     {
-        public void DamagedHealth(float value);
-        public void HealedHealth(float value);
+        public void TakeDamage(int damage);
     }
 }

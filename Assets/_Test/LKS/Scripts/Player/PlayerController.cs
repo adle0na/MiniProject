@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Test.LDG.Script;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IAttackAble
 {
     [Header("Input KeyCodes")] [SerializeField]
     private KeyCode keyCodeRun = KeyCode.LeftShift; // 달리기 키

@@ -41,14 +41,9 @@ namespace TestLDG
 
         }*/
 
-        public void DamagedHealth(float value)
+        public void TakeDamage(int damage)
         {
-            Debug.Log($"{value}만큼 아프다");
-        }
-
-        public void HealedHealth(float value)
-        {
-            
+            Debug.Log($"{damage}만큼 아프다");
         }
     }
     

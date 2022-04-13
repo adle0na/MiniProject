@@ -243,7 +243,7 @@ namespace _Test.LDG.Script
 
         private void AttackTarget(IAttackAble attackAble)
         {
-            attackAble.DamagedHealth(enemyClass.AttackPower);
+            attackAble.TakeDamage(enemyClass.AttackPower);
         }
 
         private void DisposeProjectileEvent(ProjectileEventer eventer)
@@ -253,15 +253,11 @@ namespace _Test.LDG.Script
         }
 
 
-        public void DamagedHealth(float value)
+        public void TakeDamage(int damage)
         {
             
         }
-
-        public void HealedHealth(float value)
-        {
-            
-        }
+        
 
         private float AttackRadius() => Vector3.Distance(transform.position, target.position);
 
