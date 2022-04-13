@@ -12,11 +12,14 @@ namespace _Test.LDG.Script
         private static readonly int AttackTrigger = Animator.StringToHash("AttackTrigger");
         private static readonly int DeadTrigger = Animator.StringToHash("DeadTrigger");
         private static readonly int IsRun = Animator.StringToHash("IsRun");
-        
+
+        [SerializeField] private LayerMask attackLayer;
         [SerializeField] private EnemyClass enemyClass;
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private Animator anim;
+        [SerializeField] private EnemyAnimAttack animAttack;
         
+        [Header("테스트용 타겟 Ex: Player")]
         [SerializeField] private Transform testTarget;
 
         [SerializeField] private bool isAttack = false;
@@ -28,13 +31,20 @@ namespace _Test.LDG.Script
             enemyClass = Instantiate(enemyClass);
             enemyClass.Initialize();
             enemyClass.OnDeaded += OnDead;
+            animAttack.OnAttackAnim += Attack;
             
             Observable.FromCoroutine(AnimEndChecker)
                 .Subscribe(
                     _ => Debug.Log("AnimCheck"),
                     Initialized);
         }
-        
+
+        private void OnDestroy()
+        {
+            enemyClass.OnDeaded -= OnDead;
+            animAttack.OnAttackAnim -= Attack;
+        }
+
         private IEnumerator AnimEndChecker()
         {
             while (!anim.IsInTransition(0))
@@ -114,11 +124,27 @@ namespace _Test.LDG.Script
             agent.ResetPath();
         }
 
+        private void Attack()
+        {
+            foreach (var collider in Physics.OverlapSphere(transform.position, enemyClass.AttackRadius, attackLayer))
+            {
+                Debug.Log($"{collider.name}에게 {enemyClass.AttackPower}피해를 입혔다");
+            }
+        }
+        
         private bool InAttackRadius() => Vector3.Distance(transform.position, testTarget.position) < enemyClass.AttackRadius;
 
         private void OnDead()
         { 
             anim.SetTrigger(DeadTrigger);
+        }
+
+        private void OnDrawGizmos()
+        {
+            if(!isAttack) { return; }
+            
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, enemyClass.AttackRadius);
         }
     }
 }
