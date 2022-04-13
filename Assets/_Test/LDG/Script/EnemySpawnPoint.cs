@@ -10,7 +10,7 @@ namespace _Test.LDG.Script
         [SerializeField] private GameObject explosionEnemyPrefab;
         [Range(0.5f,2)] [SerializeField] private float upgradeStat = 1;
 
-        public void Start()
+        public void StageStartSpawn()
         {
             GameObject obj = null;
             

@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviour, IAttackAble
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("아야!");
         bool isDie = status.DecreaseHp(damage);
 
         if (isDie == true)
