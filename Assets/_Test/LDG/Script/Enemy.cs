@@ -236,10 +236,7 @@ namespace _Test.LDG.Script
 
         private void OnDrawGizmos()
         {
-            if (!isAttack)
-            {
-                return;
-            }
+            if (!isAttack) { return; }
 
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, enemyClass.AttackRadius);
