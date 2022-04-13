@@ -5,6 +5,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace _Test.LDG.Script
 {
@@ -20,6 +21,8 @@ namespace _Test.LDG.Script
         [SerializeField] private Animator anim;
         [SerializeField] private EnemyAnimAttack animAttack;
         [SerializeField] private Transform firePoint;
+        [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private Image healthImage;
 
         private Transform target;
         private bool isAttack = false;
@@ -227,7 +230,7 @@ namespace _Test.LDG.Script
 
         private void OnDead()
         {
-            agent.ResetPath();
+            agent.isStopped = true;
             anim.SetTrigger(DeadTrigger);
         }
 
@@ -256,7 +259,14 @@ namespace _Test.LDG.Script
 
         public void TakeDamage(int damage)
         {
+            if(enemyClass.IsDead) { return; }
+
             enemyClass.HitHealth(damage);
+            
+            canvasGroup.DOFade(1, 0.1f)
+                .OnComplete(() => canvasGroup.DOFade(0, 2f));
+
+            healthImage.DOFillAmount((float) enemyClass.CurHealth / enemyClass.MaxHealth, 0.2f);
         }
         
 

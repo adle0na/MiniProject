@@ -41,6 +41,7 @@ namespace _Test.LDG.Script
             curHealth -= Mathf.RoundToInt(damage);
             if (curHealth > 0) { return; }
             
+            curHealth = 0;
             isDead = true;
             OnDeaded?.Invoke();
         }

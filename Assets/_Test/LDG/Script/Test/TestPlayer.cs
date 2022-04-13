@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using _Test.LDG.Script;
 using UnityEngine;
@@ -44,6 +45,12 @@ namespace TestLDG
         public void TakeDamage(int damage)
         {
             Debug.Log($"{damage}만큼 아프다");
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.TryGetComponent<IAttackAble>(out IAttackAble attackAble))
+                attackAble.TakeDamage(5);
         }
     }
     
