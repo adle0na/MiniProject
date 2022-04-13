@@ -32,12 +32,10 @@ public class WeaponGrenadeProjectile : MonoBehaviour
         foreach (Collider hit in colliders)
         {
             // 폭발 범위에 부딪힌 오브젝트가 플레이어일 때 처리
-            IAttackAble player = hit.GetComponent<IAttackAble>();
-            if (player != null)
-            {
-                player.TakeDamage((int) (explosionDamage * 0.2f));
-                continue;
-            }
+
+            if (hit.TryGetComponent<IAttackAble>(out IAttackAble attackAble))
+                attackAble.TakeDamage(hit.CompareTag("Player") ? Mathf.RoundToInt(explosionDamage * 0.2f) : explosionDamage);
+
             
             // 폭발 범위에 부딪힌 오브젝트가 적 캐릭터일 때 처리
             // EnemyFSM enemy = hit.GetComponent<EnemyFSM>();

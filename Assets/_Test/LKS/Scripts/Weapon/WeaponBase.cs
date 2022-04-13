@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Test.LDG.Script;
 using UnityEngine;
 
 public enum WeaponType { HandGun = 0, Rifle, ShotGun, Melee, Throw,  }
@@ -36,6 +37,11 @@ public abstract class WeaponBase : MonoBehaviour
         audioSource.Stop(); // 기존에 재생중인 사운드를 정지하고
         audioSource.clip = clip; // 새로운 사운드 clip으로 교체 후
         audioSource.Play(); // 사운드 재생
+    }
+
+    protected void WeaponAttack(IAttackAble attackAble)
+    {
+        attackAble.TakeDamage(weaponSetting.damage);
     }
 
     protected void SetUp()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Test.LDG.Script;
 using DG.Tweening;
 using UnityEngine;
 
@@ -202,6 +203,10 @@ public class WeaponShotGun : WeaponBase
             Vector3 attackDirection = (targetPoint - bulletSpawnPoint.position).normalized;
             if (Physics.Raycast(bulletSpawnPoint.position, attackDirection, out hit, weaponSetting.attackDistance))
             {
+                if(hit.collider.TryGetComponent<IAttackAble>(out IAttackAble attackAble))
+                    WeaponAttack(attackAble);
+
+                
                 GameObject obj = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(obj, 2);
             }

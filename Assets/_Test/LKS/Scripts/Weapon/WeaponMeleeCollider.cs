@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using _Test.LDG.Script;
 using UnityEngine;
 
 public class WeaponMeleeCollider : MonoBehaviour
@@ -31,13 +32,9 @@ public class WeaponMeleeCollider : MonoBehaviour
     }
 
     // 칼 콜라이더와 다른게 닿았을 때 이벤트. 필요에 따라 수정
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     impactMemoryPool.SpawnImpact(other, knifeTransform);
-    //     
-    //     if(other.CompareTag($"ImpactEnemy"))
-    //         other.GetComponentInParent<EnemyFSM>().TakeDamage(damage);
-    //     else if(other.CompareTag($"InteractionObject"))
-    //         other.GetComponent<InteractionObjects>().TakeDamage(damage);
-    // }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<IAttackAble>(out IAttackAble attackAble))
+            attackAble.TakeDamage(damage);
+    }
 }

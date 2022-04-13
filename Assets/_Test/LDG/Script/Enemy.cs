@@ -227,6 +227,7 @@ namespace _Test.LDG.Script
 
         private void OnDead()
         {
+            agent.ResetPath();
             anim.SetTrigger(DeadTrigger);
         }
 
@@ -255,7 +256,7 @@ namespace _Test.LDG.Script
 
         public void TakeDamage(int damage)
         {
-            
+            enemyClass.HitHealth(damage);
         }
         
 
