@@ -64,7 +64,7 @@ public class WeaponThrow : WeaponBase
         }
     }
     
-    // assault_riffle의 grenade 애니메이션 이벤트 함수
+    // grenade 애니메이션 이벤트 함수
     public void SpawnGrenadeProjectile()
     {
         GameObject grenadeClone = Instantiate(grenadePrefab, grenadeSpawnPoint.position, Random.rotation);
