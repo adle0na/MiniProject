@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2c69a7a6b8af244bf9ef7699ccaefa, type: 3}
   m_Name: Projectile
   m_EditorClassIdentifier: 
-  EnemyAttackType: 1
-  EnemyEnhanceType: 0
+  enemyType: 1
   maxHealth: 50
-  damage: 5
-  attackDelay: 0.3
-  attackRadius: 5
+  attackPower: 1
+  attackDelay: 2
+  attackRadius: 10
+  detectRadius: 6
   speed: 3
   dropItems: []
-  _projectile:
+  projectile:
     prefab: {fileID: 6323263377879587100, guid: ca610bca8955c30498e53e52da9a25a6, type: 3}
     speed: 4
-    destroyTime: 3
+    destroyTime: 2

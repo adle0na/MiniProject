@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using DG.Tweening;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -18,21 +19,19 @@ namespace _Test.LDG.Script
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private Animator anim;
         [SerializeField] private EnemyAnimAttack animAttack;
-        
-        [Header("테스트용 타겟 Ex: Player")]
-        [SerializeField] private Transform testTarget;
+        [SerializeField] private Transform firePoint;
+        [SerializeField] private Transform target;
 
-        [SerializeField] private bool isAttack = false;
-
+        private bool isAttack = false;
         private IDisposable moveCallBack;
 
         private void Awake()
         {
             enemyClass = Instantiate(enemyClass);
             enemyClass.Initialize();
-            enemyClass.OnDeaded += OnDead;
-            animAttack.OnAttackAnim += Attack;
-            
+
+            agent.speed = enemyClass.Speed;
+
             Observable.FromCoroutine(AnimEndChecker)
                 .Subscribe(
                     _ => Debug.Log("AnimCheck"),
@@ -42,7 +41,12 @@ namespace _Test.LDG.Script
         private void OnDestroy()
         {
             enemyClass.OnDeaded -= OnDead;
-            animAttack.OnAttackAnim -= Attack;
+            animAttack.OnAttackAnim -= enemyClass.EnemyType switch
+            {
+                EnemyType.Melee => MeleeAttack,
+                EnemyType.Explosion => MeleeAttack,
+                EnemyType.Projectile => ProjectileAttack
+            };
         }
 
         private IEnumerator AnimEndChecker()
@@ -53,17 +57,40 @@ namespace _Test.LDG.Script
 
         private void Initialized()
         {
+            GameObject obj = GameObject.FindWithTag("Player");
+            if(obj == null) { OnDead(); return; }
+            
+            target = obj.transform;
+
+            enemyClass.OnDeaded += OnDead;
+
             switch (enemyClass.EnemyType)
             {
                 case EnemyType.Melee:
+                    
+                    animAttack.OnAttackAnim += MeleeAttack;
+                    
                     Observable.FromCoroutine(MeleeEnemyRoutine)
                         .Subscribe()
                         .AddTo(gameObject);
+                    
                     break;
                 case EnemyType.Explosion:
                     
+                    animAttack.OnAttackAnim += ExplosionAttack;
+                    
+                    Observable.FromCoroutine(ExplosionEnemyRoutine)
+                        .Subscribe()
+                        .AddTo(gameObject);
+                    
                     break;
                 case EnemyType.Projectile:
+                    
+                    animAttack.OnAttackAnim += ProjectileAttack;
+                    
+                    Observable.FromCoroutine(ProjectileEnemyRoutine)
+                        .Subscribe()
+                        .AddTo(gameObject);
                     
                     break;
                 case EnemyType.Boss:
@@ -81,15 +108,49 @@ namespace _Test.LDG.Script
                 
                 if (isAttack) { continue; }
 
-                if(InAttackRadius())
+                if (AttackRadius() < enemyClass.AttackRadius) 
                     StartAttackMotion();
                 else
-                    GoTo(testTarget.position);
+                    GoTo(target.position);
+            }
+        }
+        
+        private IEnumerator ProjectileEnemyRoutine()
+        {
+            while (!enemyClass.IsDead)
+            {
+                yield return null;
+                
+                if (isAttack) { continue; }
+                
+                if (AttackRadius() < enemyClass.AttackRadius)
+                    StartAttackMotion();
+                else
+                    GoTo(target.position);
+                
+            }
+        }
+        
+        private IEnumerator ExplosionEnemyRoutine()
+        {
+            while (!enemyClass.IsDead)
+            {
+                yield return null;
+                
+                if (isAttack) { continue; }
+                
+                if (AttackRadius() < enemyClass.AttackRadius)
+                    StartAttackMotion();
+                else
+                    GoTo(target.position);
+                
             }
         }
 
         private void StartAttackMotion()
         {
+            transform.LookAt(target.position);
+            
             isAttack = true;
 
             anim.SetTrigger(AttackTrigger);
@@ -124,7 +185,21 @@ namespace _Test.LDG.Script
             agent.ResetPath();
         }
 
-        private void Attack()
+        private void MeleeAttack()
+        {
+            foreach (var collider in Physics.OverlapSphere(transform.position, enemyClass.AttackRadius, attackLayer))
+            {
+                Debug.Log($"{collider.name}에게 {enemyClass.AttackPower}피해를 입혔다");
+            }
+        }
+
+        private void ProjectileAttack()
+        {
+            GameObject obj = Instantiate(enemyClass.Projectile.prefab, firePoint.position, transform.rotation);
+            obj.GetComponent<Rigidbody>().velocity = transform.forward * enemyClass.Projectile.speed;
+        }
+
+        private void ExplosionAttack()
         {
             foreach (var collider in Physics.OverlapSphere(transform.position, enemyClass.AttackRadius, attackLayer))
             {
@@ -132,7 +207,7 @@ namespace _Test.LDG.Script
             }
         }
         
-        private bool InAttackRadius() => Vector3.Distance(transform.position, testTarget.position) < enemyClass.AttackRadius;
+        private float AttackRadius() => Vector3.Distance(transform.position, target.position);
 
         private void OnDead()
         { 

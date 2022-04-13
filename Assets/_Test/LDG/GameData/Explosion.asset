@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2c69a7a6b8af244bf9ef7699ccaefa, type: 3}
   m_Name: Explosion
   m_EditorClassIdentifier: 
-  EnemyAttackType: 2
-  EnemyEnhanceType: 0
+  enemyType: 2
   maxHealth: 50
-  damage: 5
-  attackDelay: 2
-  attackRadius: 2
-  speed: 3
+  attackPower: 50
+  attackDelay: 6
+  attackRadius: 3
+  detectRadius: 6
+  speed: 1
   dropItems: []
+  projectile:
+    prefab: {fileID: 0}
+    speed: 0
+    destroyTime: 0
