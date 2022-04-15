@@ -136,6 +136,10 @@ PrefabInstance:
       propertyPath: enemyClass
       value: 
       objectReference: {fileID: 11400000, guid: 58e3ce9599cda3f499d15652bca79ab3, type: 2}
+    - target: {fileID: 752025183220226232, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
+      propertyPath: animEventer
+      value: 
+      objectReference: {fileID: 6770262829538870917}
     - target: {fileID: 752025183220226234, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: m_Name
       value: Enemy Projectile

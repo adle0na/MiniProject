@@ -5,6 +5,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Test.LDG.Script
@@ -19,7 +20,7 @@ namespace _Test.LDG.Script
         [SerializeField] private EnemyClass enemyClass;
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private Animator anim;
-        [SerializeField] private EnemyAnimAttack animAttack;
+        [SerializeField] private EnemyAnimEventer animEventer;
         [SerializeField] private Transform firePoint;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private Image healthImage;
@@ -34,6 +35,12 @@ namespace _Test.LDG.Script
             enemyClass.Initialize();
 
             agent.speed = enemyClass.Speed;
+            
+            GameObject obj = GameObject.FindWithTag("Player");
+            if (obj == null) { OnDead(); return; }
+
+            target = obj.transform;
+
 
             Observable.FromCoroutine(AnimEndChecker)
                 .Subscribe(
@@ -45,12 +52,13 @@ namespace _Test.LDG.Script
         private void OnDestroy()
         {
             enemyClass.OnDeaded -= OnDead;
-            animAttack.OnAttackAnim -= enemyClass.EnemyType switch
+            animEventer.OnAttackAnim -= enemyClass.EnemyType switch
             {
                 EnemyType.Melee => MeleeAttack,
                 EnemyType.Explosion => MeleeAttack,
                 EnemyType.Projectile => ProjectileAttack
             };
+            animEventer.OnDeadAnim -= DestroyObject;
         }
 
         private IEnumerator AnimEndChecker()
@@ -61,99 +69,31 @@ namespace _Test.LDG.Script
 
         private void Initialized()
         {
-            GameObject obj = GameObject.FindWithTag("Player");
-            if (obj == null)
-            {
-                OnDead();
-                return;
-            }
-
-            target = obj.transform;
-
             enemyClass.OnDeaded += OnDead;
 
             switch (enemyClass.EnemyType)
             {
-                case EnemyType.Melee:
-
-                    animAttack.OnAttackAnim += MeleeAttack;
-
-                    Observable.FromCoroutine(MeleeEnemyRoutine)
-                        .Subscribe()
-                        .AddTo(gameObject);
-
-                    break;
-                case EnemyType.Explosion:
-
-                    animAttack.OnAttackAnim += ExplosionAttack;
-
-                    Observable.FromCoroutine(ExplosionEnemyRoutine)
-                        .Subscribe()
-                        .AddTo(gameObject);
-
-                    break;
-                case EnemyType.Projectile:
-
-                    animAttack.OnAttackAnim += ProjectileAttack;
-
-                    Observable.FromCoroutine(ProjectileEnemyRoutine)
-                        .Subscribe()
-                        .AddTo(gameObject);
-
-                    break;
-                case EnemyType.Boss:
-
-                    break;
+                case EnemyType.Melee: animEventer.OnAttackAnim += MeleeAttack; break;
+                case EnemyType.Explosion: animEventer.OnAttackAnim += ExplosionAttack; break;
+                case EnemyType.Projectile: animEventer.OnAttackAnim += ProjectileAttack; break;
+                case EnemyType.Boss: animEventer.OnAttackAnim += MeleeAttack; break;    // TEST
                 default: throw new ArgumentOutOfRangeException();
             }
+            
+            animEventer.OnDeadAnim += DestroyObject;
+            
+            Observable.FromCoroutine(EnemyRoutine)
+                .Subscribe()
+                .AddTo(gameObject);
         }
-
-        private IEnumerator MeleeEnemyRoutine()
+        
+        private IEnumerator EnemyRoutine()
         {
             while (!enemyClass.IsDead)
             {
                 yield return null;
 
-                if (isAttack)
-                {
-                    continue;
-                }
-
-                if (AttackRadius() < enemyClass.AttackRadius)
-                    StartAttackMotion();
-                else
-                    GoTo(target.position);
-            }
-        }
-
-        private IEnumerator ProjectileEnemyRoutine()
-        {
-            while (!enemyClass.IsDead)
-            {
-                yield return null;
-
-                if (isAttack)
-                {
-                    continue;
-                }
-
-                if (AttackRadius() < enemyClass.AttackRadius)
-                    StartAttackMotion();
-                else
-                    GoTo(target.position);
-            }
-        }
-
-        private IEnumerator ExplosionEnemyRoutine()
-        {
-            while (!enemyClass.IsDead)
-            {
-                yield return null;
-
-                if (isAttack)
-                {
-                    continue;
-                }
+                if (isAttack) { continue; }
 
                 if (AttackRadius() < enemyClass.AttackRadius)
                     StartAttackMotion();
@@ -226,6 +166,8 @@ namespace _Test.LDG.Script
                 if (collider.TryGetComponent<IAttackAble>(out IAttackAble attackAble))
                     AttackTarget(attackAble);
             }
+            OnDead();
+            
         }
 
         private void OnDead()
@@ -265,7 +207,11 @@ namespace _Test.LDG.Script
 
             healthImage.DOFillAmount((float) enemyClass.CurHealth / enemyClass.MaxHealth, 0.2f);
         }
-        
+
+        private void DestroyObject()
+        {
+            Debug.Log("사라짐");
+        }
 
         private float AttackRadius() => Vector3.Distance(transform.position, target.position);
 

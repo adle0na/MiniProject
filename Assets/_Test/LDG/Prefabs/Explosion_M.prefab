@@ -742,6 +742,10 @@ PrefabInstance:
       propertyPath: enemyClass
       value: 
       objectReference: {fileID: 11400000, guid: e0208622eb35b2d46a8c398821ba8a82, type: 2}
+    - target: {fileID: 752025183220226232, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
+      propertyPath: animEventer
+      value: 
+      objectReference: {fileID: 7661446456708045079}
     - target: {fileID: 752025183220226234, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: m_Name
       value: Explosion_M
@@ -801,6 +805,10 @@ PrefabInstance:
     - target: {fileID: 752025183220226238, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642902429102492902, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}

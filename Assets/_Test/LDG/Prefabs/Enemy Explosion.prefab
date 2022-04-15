@@ -695,6 +695,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: cec363ec89296634fbc311bb942509e5, type: 2}
+    - target: {fileID: 137952260453627620, guid: a37916baaf5ac4ca994c028f8249f29e, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 137952260453627620, guid: a37916baaf5ac4ca994c028f8249f29e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3f5f8f5e22cc46a3a1caee33f6be6e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a37916baaf5ac4ca994c028f8249f29e, type: 3}
 --- !u!1 &3199107290482314938 stripped
@@ -742,6 +750,10 @@ PrefabInstance:
       propertyPath: enemyClass
       value: 
       objectReference: {fileID: 11400000, guid: 7a1a09017f7330149bb0080f35f7ce22, type: 2}
+    - target: {fileID: 752025183220226232, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
+      propertyPath: animEventer
+      value: 
+      objectReference: {fileID: 7661446456708045079}
     - target: {fileID: 752025183220226234, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: m_Name
       value: Enemy Explosion

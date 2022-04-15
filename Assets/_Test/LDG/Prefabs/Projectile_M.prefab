@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6866811461787474454}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1404383856029128029
 PrefabInstance:
@@ -136,6 +136,10 @@ PrefabInstance:
       propertyPath: enemyClass
       value: 
       objectReference: {fileID: 11400000, guid: 70721dc7fe885904a9ed50f84d0d9fcd, type: 2}
+    - target: {fileID: 752025183220226232, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
+      propertyPath: animEventer
+      value: 
+      objectReference: {fileID: 6770262829538870917}
     - target: {fileID: 752025183220226234, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: m_Name
       value: Projectile_M
@@ -195,6 +199,10 @@ PrefabInstance:
     - target: {fileID: 752025183220226238, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642902429102492902, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
