@@ -11,6 +11,7 @@ namespace _Test.LDG.Script
         [SerializeField] private GameObject projectileEnemyPrefab;
         [SerializeField] private GameObject explosionEnemyPrefab;
         [SerializeField] private GameObject speedEnemyPrefab;
+        [SerializeField] private GameObject bossEnemyPrefab;
         [Range(0.5f,2)] [SerializeField] private float upgradeStat = 1;
 
         private void Start()
@@ -28,6 +29,7 @@ namespace _Test.LDG.Script
                 case EnemyType.Speed: obj = Instantiate(speedEnemyPrefab); break;
                 case EnemyType.Projectile: obj = Instantiate(projectileEnemyPrefab); break;
                 case EnemyType.Explosion: obj = Instantiate(explosionEnemyPrefab); break;
+                case EnemyType.Boss: obj = Instantiate(bossEnemyPrefab); break;
             }
 
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit,Mathf.Infinity))

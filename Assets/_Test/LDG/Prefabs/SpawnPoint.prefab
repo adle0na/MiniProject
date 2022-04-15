@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea4491a3e6b47c395ffbdddf6ca72bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnEnemyType: 0
+  spawnEnemyType: 4
   meleeEnemyPrefab: {fileID: 6866811461787474450, guid: 10881198f24ee2e48bc54a5906ba0e78, type: 3}
   projectileEnemyPrefab: {fileID: 6866811461787474450, guid: 945ed8669e052f644a00ad61657a41d3, type: 3}
   explosionEnemyPrefab: {fileID: 6866811461787474450, guid: 15651c01102394b45bf884a303bcf77d, type: 3}
-  speedEnemyPrefab: {fileID: 0}
-  upgradeStat: 1
+  speedEnemyPrefab: {fileID: 6866811461787474450, guid: 5b149937728767f4d896055f0b05a4bb, type: 3}
+  bossEnemyPrefab: {fileID: 6866811461787474450, guid: cfd74ff27cd1a454cb2ec2c77c7051f1, type: 3}
+  upgradeStat: 2

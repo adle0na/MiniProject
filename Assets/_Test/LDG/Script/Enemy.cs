@@ -36,12 +36,13 @@ namespace _Test.LDG.Script
 
             agent.speed = enemyClass.Speed;
             
+            animEventer.OnDeadAnim += DestroyObject;
+            
             GameObject obj = GameObject.FindWithTag("Player");
             if (obj == null) { OnDead(); return; }
 
             target = obj.transform;
-
-
+            
             Observable.FromCoroutine(AnimEndChecker)
                 .Subscribe(
                     _ => Debug.Log("AnimCheck"),
@@ -79,9 +80,7 @@ namespace _Test.LDG.Script
                 case EnemyType.Boss: animEventer.OnAttackAnim += MeleeAttack; break;    // TEST
                 default: throw new ArgumentOutOfRangeException();
             }
-            
-            animEventer.OnDeadAnim += DestroyObject;
-            
+
             Observable.FromCoroutine(EnemyRoutine)
                 .Subscribe()
                 .AddTo(gameObject);
