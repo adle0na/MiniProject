@@ -24,6 +24,7 @@ namespace _Test.LDG.Script
         [SerializeField] private Transform firePoint;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private Image healthImage;
+        [SerializeField] private ParticleSystem particleSystem;
 
         private Transform target;
         private bool isAttack = false;
@@ -141,6 +142,10 @@ namespace _Test.LDG.Script
 
         private void MeleeAttack()
         {
+            if(particleSystem != null)
+                particleSystem.Play();
+            
+            
             foreach (var collider in Physics.OverlapSphere(transform.position, enemyClass.AttackRadius, attackLayer))
             {
                 if (collider.TryGetComponent<IAttackAble>(out IAttackAble attackAble))
