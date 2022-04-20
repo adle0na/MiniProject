@@ -9,11 +9,13 @@ public class StageStart : MonoBehaviour
 {
     public bool inStage;
 
-    public int enemyCount;
+    private int enemyCount = 0;
 
     public string stagenumber;
 
     public EnemySpawnPoint[] enemySpawnPoints;
+
+    private bool isSpawnEnemy = false;
         
     void Awake()
     {
@@ -23,10 +25,16 @@ public class StageStart : MonoBehaviour
         //StartCoroutine(EnemyCountM());
     }
 
+    public void EnemyDead()
+    {
+        enemyCount--;
+    }
     
     
     private void Update()
     {
+        if(!isSpawnEnemy) { return; }
+        
         if (enemyCount == 0)
         {
             Debug.Log("포탈 활성화");
@@ -49,12 +57,17 @@ public class StageStart : MonoBehaviour
                     {
                         foreach (var _enemySpawnPoint in enemySpawnPoints)
                         {
-                            _enemySpawnPoint.StageStartSpawn();
+                            enemyCount++;
+                            _enemySpawnPoint.StageStartSpawn(this);
                         }
+                        isSpawnEnemy = true;
                     }
                 }
             }
         }
+        
+        
+        
     }
     
     // 디버깅용 

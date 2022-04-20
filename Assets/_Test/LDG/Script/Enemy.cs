@@ -25,7 +25,7 @@ namespace _Test.LDG.Script
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private Image healthImage;
         [SerializeField] private ParticleSystem particleSystem;
-
+        
         private Transform target;
         private bool isAttack = false;
         private IDisposable moveCallBack;
@@ -215,7 +215,6 @@ namespace _Test.LDG.Script
         private void DestroyObject()
         {
             Debug.Log("사라짐");
-            
         }
 
         private float AttackRadius() => Vector3.Distance(transform.position, target.position);

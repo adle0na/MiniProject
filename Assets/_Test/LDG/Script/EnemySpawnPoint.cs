@@ -15,8 +15,13 @@ namespace _Test.LDG.Script
         [SerializeField] private GameObject bossEnemyPrefab;
         [Range(0.5f,2)] [SerializeField] private float upgradeStat = 1;
 
-        public void StageStartSpawn()
+        private StageStart _stageStart;
+        
+        private Enemy enemy = null;
+        
+        public void StageStartSpawn(StageStart stageStart = default)
         {
+            _stageStart = stageStart;
             GameObject obj = null;
             
             switch (spawnEnemyType)
@@ -30,7 +35,10 @@ namespace _Test.LDG.Script
 
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit,Mathf.Infinity))
             {
-                obj.GetComponent<Enemy>().GetEnemyClass().UpgradeEnemy(upgradeStat);
+                enemy = obj.GetComponent<Enemy>();
+                enemy.GetEnemyClass().UpgradeEnemy(upgradeStat);
+                enemy.GetEnemyClass().OnDeaded += OnDeadEnemy;
+                
                 obj.GetComponent<NavMeshAgent>().Warp(hit.point);
 
                 foreach (var render in obj.transform.GetChild(0).GetComponentsInChildren<Renderer>())
@@ -46,6 +54,13 @@ namespace _Test.LDG.Script
                 Debug.Log("바닥이 없자나!!!");
             }
 
+        }
+
+        private void OnDeadEnemy()
+        {
+            if(_stageStart != null)
+                _stageStart.EnemyDead();
+            enemy.GetEnemyClass().OnDeaded -= OnDeadEnemy;
         }
     }
 }

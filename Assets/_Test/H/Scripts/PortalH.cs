@@ -14,7 +14,7 @@ public class PortalH : MonoBehaviour
         {
             if (collision.GetComponent<PlayerController>().gameObject)
             {
-                if (_stageStart.inStage == true || _stageStart.enemyCount == 0)
+                if (_stageStart.inStage == true)
                 {
                     Debug.Log("플레이어 이동 실행");
 
