@@ -7,76 +7,41 @@ using UnityEngine;
 
 public class StageStart : MonoBehaviour
 {
-    public bool inStage;
-
+    
+    [SerializeField] private string stagenumber;
+    
     private int enemyCount = 0;
-
-    public string stagenumber;
-
+    
     public EnemySpawnPoint[] enemySpawnPoints;
 
-    private bool isSpawnEnemy = false;
-        
-    void Awake()
+    // 플레이어 감지 적 스폰 
+    private void OnTriggerEnter(Collider collision)
     {
-        inStage = false;
-
-        // 디버깅용
-        //StartCoroutine(EnemyCountM());
+        if (collision.TryGetComponent<CharacterController>(out CharacterController controller))
+        {
+            foreach (var _enemySpawnPoint in enemySpawnPoints)
+            { 
+                enemyCount++;
+                _enemySpawnPoint.StageStartSpawn(this);
+            }
+            StartCoroutine(EnemyCountCheck());
+        }
     }
-
+    
+    // 적 처치시 수 감소
     public void EnemyDead()
     {
         enemyCount--;
     }
     
-    
-    private void Update()
+    // 모든 적 처치시 포탈 활성화
+    IEnumerator EnemyCountCheck()
     {
-        if(!isSpawnEnemy) { return; }
-        
         if (enemyCount == 0)
         {
-            Debug.Log("포탈 활성화");
             GameObject.Find("Portal" + stagenumber).transform.Find("Portal").gameObject.SetActive(true);
         }
+        yield break;
     }
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            if (collision.GetComponent<PlayerController>().gameObject)
-            {
-                if (inStage == false)
-                {
-                    Debug.Log("스테이지 진입");
-                    inStage = true;
-                    
-                    if (inStage == true)
-                    {
-                        foreach (var _enemySpawnPoint in enemySpawnPoints)
-                        {
-                            enemyCount++;
-                            _enemySpawnPoint.StageStartSpawn(this);
-                        }
-                        isSpawnEnemy = true;
-                    }
-                }
-            }
-        }
-        
-        
-        
-    }
-    
-    // 디버깅용 
-    /*
-    IEnumerator EnemyCountM()
-    {
-        yield return new WaitForSeconds(5f);
-        Debug.Log("적이 전부 처치됨");
-        enemyCount--;
-    }
-    */
 }

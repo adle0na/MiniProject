@@ -6,20 +6,20 @@ using UnityEngine;
 
 public class PortalH : MonoBehaviour
 {
+    
     StageStart _stageStart;
+    
+    [SerializeField] private Transform spawnPoint;
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.TryGetComponent<CharacterController>(out CharacterController controller))
         {
-            if (collision.GetComponent<PlayerController>().gameObject)
-            {
-                if (_stageStart.inStage == true)
-                {
-                    Debug.Log("플레이어 이동 실행");
-
-                }
-            }
+            // 플레이어 이동
+            controller.enabled = false;
+            collision.gameObject.transform.position = spawnPoint.position;
+            controller.enabled = true;
         }
     }
+    
 }
