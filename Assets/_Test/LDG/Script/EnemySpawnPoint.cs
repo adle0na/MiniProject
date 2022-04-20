@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,11 +14,6 @@ namespace _Test.LDG.Script
         [SerializeField] private GameObject speedEnemyPrefab;
         [SerializeField] private GameObject bossEnemyPrefab;
         [Range(0.5f,2)] [SerializeField] private float upgradeStat = 1;
-
-        private void Start()
-        {
-            StageStartSpawn();
-        }
 
         public void StageStartSpawn()
         {

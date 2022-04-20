@@ -1,18 +1,40 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using _Test.LDG.Script;
 using UnityEngine;
 
 public class StageStart : MonoBehaviour
 {
-    [SerializeField] GameObject player = null;
+    public bool inStage;
 
-    public bool inStage = false;
+    public int enemyCount;
 
+    public string stagenumber;
+
+    public EnemySpawnPoint[] enemySpawnPoints;
+        
     void Awake()
     {
         inStage = false;
+
+        // 디버깅용
+        //StartCoroutine(EnemyCountM());
     }
-    private void OnTriggerStay(Collider collision)
+
+    
+    
+    private void Update()
+    {
+        if (enemyCount == 0)
+        {
+            Debug.Log("포탈 활성화");
+            GameObject.Find("Portal" + stagenumber).transform.Find("Portal").gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -20,14 +42,28 @@ public class StageStart : MonoBehaviour
             {
                 if (inStage == false)
                 {
-                    Debug.Log("1스테이지 대기중");
+                    Debug.Log("스테이지 진입");
                     inStage = true;
+                    
+                    if (inStage == true)
+                    {
+                        foreach (var _enemySpawnPoint in enemySpawnPoints)
+                        {
+                            _enemySpawnPoint.StageStartSpawn();
+                        }
+                    }
                 }
-
             }
-
         }
-
-
     }
+    
+    // 디버깅용 
+    /*
+    IEnumerator EnemyCountM()
+    {
+        yield return new WaitForSeconds(5f);
+        Debug.Log("적이 전부 처치됨");
+        enemyCount--;
+    }
+    */
 }

@@ -8,6 +8,8 @@ TagManager:
   - RNote
   - LNote
   - Weapon
+  - Enemy
+  - Portal
   layers:
   - Default
   - TransparentFX

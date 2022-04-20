@@ -215,6 +215,7 @@ namespace _Test.LDG.Script
         private void DestroyObject()
         {
             Debug.Log("사라짐");
+            
         }
 
         private float AttackRadius() => Vector3.Distance(transform.position, target.position);
