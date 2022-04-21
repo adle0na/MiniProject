@@ -9724,7 +9724,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4891818416696146227}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 6.35, y: 0, z: 0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9732,7 +9732,7 @@ Transform:
   - {fileID: 7444664169139040553}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &-5766503634425700845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9787,7 +9787,7 @@ GameObject:
   - component: {fileID: 2940580729287071460}
   - component: {fileID: 2367876987814744254}
   m_Layer: 0
-  m_Name: Portal
+  m_Name: portal
   m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

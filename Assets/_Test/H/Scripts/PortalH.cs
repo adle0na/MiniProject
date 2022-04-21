@@ -21,5 +21,4 @@ public class PortalH : MonoBehaviour
             controller.enabled = true;
         }
     }
-    
 }

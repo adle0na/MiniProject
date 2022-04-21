@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2c69a7a6b8af244bf9ef7699ccaefa, type: 3}
   m_Name: Melee
   m_EditorClassIdentifier: 
-  EnemyAttackType: 0
-  EnemyEnhanceType: 0
+  enemyType: 0
   maxHealth: 50
-  damage: 5
+  attackPower: 5
   attackDelay: 2
   attackRadius: 2
+  detectRadius: 6
   speed: 3
   dropItems: []
+  projectile:
+    prefab: {fileID: 0}
+    speed: 0
+    destroyTime: 0

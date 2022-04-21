@@ -73,6 +73,10 @@ namespace _Test.LDG.Script
         Projectile,
         Explosion,
         Speed,
+        MeleeG,
+        ProjectileG,
+        ExplosionG,
+        SpeedG,
         Boss
     }
 }
