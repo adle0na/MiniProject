@@ -108,8 +108,8 @@ namespace _Test.LDG.Script
             transform.LookAt(target.position);
 
             isAttack = true;
-            
-            anim.SetInteger(AttackIndex, Random.Range(0, 3));
+
+            anim.SetInteger(AttackIndex, enemyClass.EnemyType == EnemyType.Boss ? Random.Range(0, 3) : 0);
 
             anim.SetTrigger(AttackTrigger);
 
