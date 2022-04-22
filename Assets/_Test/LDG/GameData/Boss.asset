@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 500
   attackPower: 20
   attackDelay: 4
-  attackRadius: 3
+  attackRadius: 4
   detectRadius: 6
   speed: 4
   dropItems: []

@@ -37,14 +37,18 @@ namespace _Test.LDG.Script
             enemyClass.Initialize();
 
             agent.speed = enemyClass.Speed;
-            
+
             animEventer.OnDeadAnim += DestroyObject;
-            
+
             GameObject obj = GameObject.FindWithTag("Player");
-            if (obj == null) { OnDead(); return; }
+            if (obj == null)
+            {
+                OnDead();
+                return;
+            }
 
             target = obj.transform;
-            
+
             Observable.FromCoroutine(AnimEndChecker)
                 .Subscribe(
                     _ => Debug.Log("AnimCheck"),
@@ -87,14 +91,17 @@ namespace _Test.LDG.Script
                 .Subscribe()
                 .AddTo(gameObject);
         }
-        
+
         private IEnumerator EnemyRoutine()
         {
             while (!enemyClass.IsDead)
             {
                 yield return null;
 
-                if (isAttack) { continue; }
+                if (isAttack)
+                {
+                    continue;
+                }
 
                 if (AttackRadius() < enemyClass.AttackRadius)
                     StartAttackMotion();
@@ -169,8 +176,8 @@ namespace _Test.LDG.Script
                 if (collider.TryGetComponent<IAttackAble>(out IAttackAble attackAble))
                     AttackTarget(attackAble);
             }
+
             OnDead();
-            
         }
 
         private void BossAttack()
@@ -200,7 +207,10 @@ namespace _Test.LDG.Script
 
         private void OnDrawGizmos()
         {
-            if (!isAttack) { return; }
+            if (!isAttack)
+            {
+                return;
+            }
 
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, enemyClass.AttackRadius);
@@ -220,10 +230,13 @@ namespace _Test.LDG.Script
 
         public void TakeDamage(int damage)
         {
-            if(enemyClass.IsDead) { return; }
+            if (enemyClass.IsDead)
+            {
+                return;
+            }
 
             enemyClass.HitHealth(damage);
-            
+
             canvasGroup.DOFade(1, 0.1f)
                 .OnComplete(() => canvasGroup.DOFade(0, 2f));
 
