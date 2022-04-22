@@ -84,6 +84,7 @@ namespace _Test.LDG.Script
         ProjectileG,
         ExplosionG,
         SpeedG,
+        MiddleBoss,
         Boss
     }
 }

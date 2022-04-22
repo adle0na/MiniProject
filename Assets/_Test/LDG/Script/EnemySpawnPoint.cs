@@ -16,6 +16,7 @@ namespace _Test.LDG.Script
         [SerializeField] private GameObject projectileGEnemyPrefab;
         [SerializeField] private GameObject explosionGEnemyPrefab;
         [SerializeField] private GameObject speedGEnemyPrefab;
+        [SerializeField] private GameObject middleBossEnemyPrefab;
         [SerializeField] private GameObject bossEnemyPrefab;
         
         [Range(0.5f,2)] [SerializeField] private float upgradeStat = 1;
@@ -39,6 +40,7 @@ namespace _Test.LDG.Script
                 case EnemyType.SpeedG: obj = Instantiate(speedGEnemyPrefab); break;
                 case EnemyType.ProjectileG: obj = Instantiate(projectileGEnemyPrefab); break;
                 case EnemyType.ExplosionG: obj = Instantiate(explosionGEnemyPrefab); break;
+                case EnemyType.MiddleBoss: obj = Instantiate(middleBossEnemyPrefab); break;
                 case EnemyType.Boss: obj = Instantiate(bossEnemyPrefab); break;
             }
 

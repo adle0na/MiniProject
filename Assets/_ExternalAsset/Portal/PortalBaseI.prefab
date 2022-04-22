@@ -9668,7 +9668,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1 &4402341974705543364
+--- !u!1 &3457656838255620704
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9676,7 +9676,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2232827990779291013}
+  - component: {fileID: 7444664169139040553}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -9684,15 +9684,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2232827990779291013
+--- !u!4 &7444664169139040553
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4402341974705543364}
+  m_GameObject: {fileID: 3457656838255620704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -2}
+  m_LocalPosition: {x: 3, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3404208207218233814}
@@ -9709,9 +9709,9 @@ GameObject:
   - component: {fileID: 3404208207218233814}
   - component: {fileID: -5766503634425700845}
   - component: {fileID: -3652989018179324694}
-  - component: {fileID: 399800895955586883}
+  - component: {fileID: 4470169953140750720}
   m_Layer: 0
-  m_Name: PortalBaseH
+  m_Name: PortalBaseI
   m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9724,15 +9724,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4891818416696146227}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 6.35, y: 0, z: 0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 106236575351284866}
-  - {fileID: 2232827990779291013}
+  - {fileID: 7444664169139040553}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &-5766503634425700845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9744,8 +9744,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: -0.4, y: 2, z: 2}
+  m_Center: {x: -0.27, y: 0, z: 0}
 --- !u!54 &-3652989018179324694
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9762,7 +9762,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &399800895955586883
+--- !u!114 &4470169953140750720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9774,7 +9774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7685d6335c3c54543a66ca4dfe4ed02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 2232827990779291013}
+  spawnPoint: {fileID: 7444664169139040553}
 --- !u!1 &6834265094582677421
 GameObject:
   m_ObjectHideFlags: 0
@@ -9800,7 +9800,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6834265094582677421}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9809,7 +9809,7 @@ Transform:
   - {fileID: 7575587761480777812}
   m_Father: {fileID: 3404208207218233814}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!198 &2940580729287071460
 ParticleSystem:
   m_ObjectHideFlags: 0
