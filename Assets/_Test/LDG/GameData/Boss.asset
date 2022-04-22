@@ -12,15 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2c69a7a6b8af244bf9ef7699ccaefa, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  enemyType: 0
+  enemyType: 8
   maxHealth: 500
   attackPower: 20
-  attackDelay: 3
-  attackRadius: 2
+  attackDelay: 4
+  attackRadius: 3
   detectRadius: 6
   speed: 4
   dropItems: []
   projectile:
+    prefab: {fileID: 0}
+    speed: 0
+    destroyTime: 0
+  attackFx1:
+    prefab: {fileID: 3599650122286956544, guid: 8afb158ac021ed640a88c112937eaf5f, type: 3}
+    speed: 0
+    destroyTime: 3
+  attackFx2:
+    prefab: {fileID: 5518456644253971154, guid: d73eca5e97438f44d80adca02ebef99e, type: 3}
+    speed: 0
+    destroyTime: 8
+  attackFx3:
     prefab: {fileID: 0}
     speed: 0
     destroyTime: 0

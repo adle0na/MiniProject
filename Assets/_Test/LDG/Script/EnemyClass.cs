@@ -28,6 +28,10 @@ namespace _Test.LDG.Script
         [Tooltip("이동 속도")] [SerializeField] private float speed = 3;
         [Tooltip("드랍 아이템")] [SerializeField] private GameObject[] dropItems = new GameObject[0];
         [Tooltip("발사체 정보")] [SerializeField] private ProjectilePrefab projectile = new ProjectilePrefab();
+        
+        [Tooltip("공격 효과1 정보")] [SerializeField] private ProjectilePrefab attackFx1 = new ProjectilePrefab();
+        [Tooltip("공격 효과1 정보")] [SerializeField] private ProjectilePrefab attackFx2 = new ProjectilePrefab();
+        [Tooltip("공격 효과1 정보")] [SerializeField] private ProjectilePrefab attackFx3 = new ProjectilePrefab();
     
         private int curHealth = 100;
         private bool isDead = false;
@@ -62,6 +66,9 @@ namespace _Test.LDG.Script
         public float Speed => speed;
         public GameObject[] DropItems => dropItems;
         public ProjectilePrefab Projectile => projectile;
+        public ProjectilePrefab AttackFx1 => attackFx1;
+        public ProjectilePrefab AttackFx2 => attackFx2;
+        public ProjectilePrefab AttackFx3 => attackFx3;
         public int CurHealth => curHealth;
         public bool IsDead => isDead;
 

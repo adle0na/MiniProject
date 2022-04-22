@@ -392,7 +392,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.3
       minScalar: 0.05
       maxCurve:
         serializedVersion: 2
@@ -973,7 +973,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1500
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4875,7 +4875,7 @@ GameObject:
   - component: {fileID: 5298568859022296105}
   - component: {fileID: 5298568859022296102}
   - component: {fileID: 5298568859022296103}
-  - component: {fileID: 6494108157323181045}
+  - component: {fileID: 1699362423106549254}
   m_Layer: 0
   m_Name: Effect_30_MagmaSphere
   m_TagString: Untagged
@@ -5730,7 +5730,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9631,7 +9631,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &6494108157323181045
+--- !u!114 &1699362423106549254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

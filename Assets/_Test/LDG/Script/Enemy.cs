@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace _Test.LDG.Script
 {
@@ -24,11 +25,11 @@ namespace _Test.LDG.Script
         [SerializeField] private Transform firePoint;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private Image healthImage;
-        [SerializeField] private ParticleSystem particleSystem;
-        
+
         private Transform target;
         private bool isAttack = false;
         private IDisposable moveCallBack;
+        private static readonly int AttackIndex = Animator.StringToHash("AttackIndex");
 
         private void Awake()
         {
@@ -57,8 +58,9 @@ namespace _Test.LDG.Script
             animEventer.OnAttackAnim -= enemyClass.EnemyType switch
             {
                 EnemyType.Melee => MeleeAttack,
-                EnemyType.Explosion => MeleeAttack,
-                EnemyType.Projectile => ProjectileAttack
+                EnemyType.Explosion => ExplosionAttack,
+                EnemyType.Projectile => ProjectileAttack,
+                EnemyType.Boss => BossAttack
             };
             animEventer.OnDeadAnim -= DestroyObject;
         }
@@ -73,14 +75,13 @@ namespace _Test.LDG.Script
         {
             enemyClass.OnDeaded += OnDead;
 
-            switch (enemyClass.EnemyType)
+            animEventer.OnAttackAnim += enemyClass.EnemyType switch
             {
-                case EnemyType.Melee: animEventer.OnAttackAnim += MeleeAttack; break;
-                case EnemyType.Explosion: animEventer.OnAttackAnim += ExplosionAttack; break;
-                case EnemyType.Projectile: animEventer.OnAttackAnim += ProjectileAttack; break;
-                case EnemyType.Boss: animEventer.OnAttackAnim += MeleeAttack; break;    // TEST
-                default: throw new ArgumentOutOfRangeException();
-            }
+                EnemyType.Melee => MeleeAttack,
+                EnemyType.Explosion => ExplosionAttack,
+                EnemyType.Projectile => ProjectileAttack,
+                EnemyType.Boss => BossAttack
+            };
 
             Observable.FromCoroutine(EnemyRoutine)
                 .Subscribe()
@@ -107,6 +108,8 @@ namespace _Test.LDG.Script
             transform.LookAt(target.position);
 
             isAttack = true;
+            
+            anim.SetInteger(AttackIndex, Random.Range(0, 3));
 
             anim.SetTrigger(AttackTrigger);
 
@@ -142,10 +145,6 @@ namespace _Test.LDG.Script
 
         private void MeleeAttack()
         {
-            if(particleSystem != null)
-                particleSystem.Play();
-            
-            
             foreach (var collider in Physics.OverlapSphere(transform.position, enemyClass.AttackRadius, attackLayer))
             {
                 if (collider.TryGetComponent<IAttackAble>(out IAttackAble attackAble))
@@ -172,6 +171,25 @@ namespace _Test.LDG.Script
             }
             OnDead();
             
+        }
+
+        private void BossAttack()
+        {
+            GameObject obj = null;
+            switch (anim.GetInteger(AttackIndex))
+            {
+                case 0:
+                    obj = Instantiate(enemyClass.AttackFx1.prefab, firePoint.position, transform.rotation);
+                    Destroy(obj, enemyClass.AttackFx1.destroyTime);
+                    break;
+                case 1:
+                    MeleeAttack();
+                    break;
+                case 2:
+                    obj = Instantiate(enemyClass.AttackFx2.prefab, transform.position, transform.rotation);
+                    Destroy(obj, enemyClass.AttackFx2.destroyTime);
+                    break;
+            }
         }
 
         private void OnDead()
