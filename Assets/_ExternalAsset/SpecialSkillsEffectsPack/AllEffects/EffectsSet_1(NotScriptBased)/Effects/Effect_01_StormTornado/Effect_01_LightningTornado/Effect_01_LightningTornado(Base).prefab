@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 25
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4703,7 +4703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4037244416747988140}
   m_Layer: 0
-  m_Name: Effect_01_LightningTornado(Base)
+  m_Name: Effect_01_LightningTornado
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19931,7 +19931,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 75
       minScalar: 10
       maxCurve:
         serializedVersion: 2

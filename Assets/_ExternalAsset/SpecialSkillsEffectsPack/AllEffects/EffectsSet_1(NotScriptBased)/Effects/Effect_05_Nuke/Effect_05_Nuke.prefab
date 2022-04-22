@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5036,7 +5036,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 20
       minScalar: 2.5
       maxCurve:
         serializedVersion: 2
@@ -5727,7 +5727,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 15
+        scalar: 75
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -20047,7 +20047,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 4
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -39262,7 +39262,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 25
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -39315,7 +39315,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -43500,7 +43500,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.04
       minScalar: 2.5
       maxCurve:
         serializedVersion: 2
@@ -44191,7 +44191,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 50
+        scalar: 2500
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -48925,7 +48925,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -49035,7 +49035,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 10
+        scalar: 100
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -52848,7 +52848,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
-  m_SortMode: 1
+  m_SortMode: 3
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
@@ -53154,7 +53154,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.04
       minScalar: 2.5
       maxCurve:
         serializedVersion: 2
@@ -53845,7 +53845,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 100
+        scalar: 2500
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -67404,7 +67404,7 @@ GameObject:
   - component: {fileID: 6352747106551690964}
   - component: {fileID: 6352747106551690922}
   - component: {fileID: 6352747106551690965}
-  - component: {fileID: 5226981532545814083}
+  - component: {fileID: 8915473618615066753}
   m_Layer: 0
   m_Name: Effect_05_NukeHead
   m_TagString: Untagged
@@ -72204,7 +72204,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &5226981532545814083
+--- !u!114 &8915473618615066753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72299,7 +72299,7 @@ GameObject:
   - component: {fileID: 6352747106663723695}
   - component: {fileID: 6352747106663723693}
   - component: {fileID: 6352747106663723692}
-  - component: {fileID: 7953885704515618739}
+  - component: {fileID: 3295265063693900744}
   m_Layer: 0
   m_Name: Effect_05_NukeBody
   m_TagString: Untagged
@@ -77099,7 +77099,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &7953885704515618739
+--- !u!114 &3295265063693900744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82205,7 +82205,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.07
       minScalar: 2.5
       maxCurve:
         serializedVersion: 2
@@ -82786,7 +82786,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 1000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -86825,7 +86825,7 @@ GameObject:
   - component: {fileID: 6352747106901072500}
   - component: {fileID: 6352747106901072458}
   - component: {fileID: 6352747106901072501}
-  - component: {fileID: 7005627616588459713}
+  - component: {fileID: 6619531322840666552}
   m_Layer: 0
   m_Name: Effect_05_NukeHead_2
   m_TagString: Untagged
@@ -91625,7 +91625,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &7005627616588459713
+--- !u!114 &6619531322840666552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91647,7 +91647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6352747106915183318}
   - component: {fileID: 6352747106915183319}
-  - component: {fileID: 6433047159103014396}
+  - component: {fileID: 3870084663088885765}
   m_Layer: 0
   m_Name: Effect_05_NukeMarks
   m_TagString: Untagged
@@ -91686,7 +91686,7 @@ MonoBehaviour:
   m_activeObj:
   - {fileID: 6352747106360451119}
   m_delayTime: 4
---- !u!114 &6433047159103014396
+--- !u!114 &3870084663088885765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101614,7 +101614,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -102195,7 +102195,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 1000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -110970,7 +110970,7 @@ GameObject:
   - component: {fileID: 6352747107115374675}
   - component: {fileID: 6352747107115374673}
   - component: {fileID: 6352747107115374672}
-  - component: {fileID: 8605352867034185751}
+  - component: {fileID: 7905368121040298126}
   m_Layer: 0
   m_Name: Effect_05_NukeBody_2
   m_TagString: Untagged
@@ -115770,7 +115770,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8605352867034185751
+--- !u!114 &7905368121040298126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Effect_15_Card_3
   m_Shader: {fileID: 4800000, guid: 1d58a8e283100ea4f8435e923e54553e, type: 3}
-  m_ShaderKeywords: IS_MASK_FADE IS_NORMAL_ANIMATE IS_NORMAL_DISTORTION IS_SOFT_PARTICLES
-    IS_TEXTURE_ANIMATE IS_UNITY_PARTICLE_INSTANCING_ENABLED _ALPHAPREMULTIPLY_ON
+  m_ShaderKeywords: IS_MASK_FADE IS_NORMAL_ANIMATE IS_SOFT_PARTICLES IS_TEXTURE_ANIMATE
+    IS_UNITY_PARTICLE_INSTANCING_ENABLED _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -92,7 +92,7 @@ Material:
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
     - _CameraNearFadeDistance: 1
-    - _ColorFactor: 25
+    - _ColorFactor: 7.5
     - _ColorMode: 0
     - _Cull: 2
     - _Culling: 0
@@ -125,7 +125,7 @@ Material:
     - _NoiseScale: 0
     - _NormalAnimate: 1
     - _NormalAnimateSpeed: 0.15
-    - _NormalDistortion: 1
+    - _NormalDistortion: 0
     - _NormalDistortionFactor: 5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -146,6 +146,7 @@ Material:
     - _TexPosMove: -1
     - _TexcoordMove: 0
     - _TexcoordMoveStrength: 5
+    - _TexcoordMoveUsingCustom: 0
     - _TextureAnimate: 1
     - _TextureAnimateSpeed: 1
     - _TextureAnimateStyle: 0
@@ -169,5 +170,5 @@ Material:
     - _NoiseValue: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 0.79222906, g: 0, b: 3.434555, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
-    - _TintColor: {r: 0.9627068, g: 3.1087925, b: 13.606258, a: 1}
+    - _TintColor: {r: 0.21960784, g: 0.6901961, b: 2.9960785, a: 1}
     - _TintColor2: {r: 1, g: 1, b: 1, a: 1}

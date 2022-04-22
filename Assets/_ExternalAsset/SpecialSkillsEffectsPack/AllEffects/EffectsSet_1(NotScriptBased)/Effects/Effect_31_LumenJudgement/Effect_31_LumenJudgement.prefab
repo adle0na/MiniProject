@@ -10524,7 +10524,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 2
+        scalar: 5
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -29557,7 +29557,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 15
+        scalar: 50
         minScalar: 30
         maxCurve:
           serializedVersion: 2

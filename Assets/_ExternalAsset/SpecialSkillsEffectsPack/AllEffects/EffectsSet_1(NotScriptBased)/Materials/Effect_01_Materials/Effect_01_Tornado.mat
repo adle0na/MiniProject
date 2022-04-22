@@ -9,9 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Effect_01_Tornado
   m_Shader: {fileID: 4800000, guid: 1d58a8e283100ea4f8435e923e54553e, type: 3}
-  m_ShaderKeywords: IS_MASK_FADE IS_NORMAL_ANIMATE IS_NORMAL_DISTORTION IS_SOFT_PARTICLES
-    IS_TEXCOORD_MOVE IS_TEXTURE_ANIMATE IS_UNITY_PARTICLE_INSTANCING_ENABLED IS_VERTEXANIMATION
-    _ALPHAPREMULTIPLY_ON
+  m_ShaderKeywords: IS_MASK_FADE IS_NORMAL_ANIMATE IS_SOFT_PARTICLES IS_TEXCOORD_MOVE
+    IS_TEXTURE_ANIMATE IS_UNITY_PARTICLE_INSTANCING_ENABLED IS_VERTEXANIMATION _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -93,7 +92,7 @@ Material:
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
     - _CameraNearFadeDistance: 1
-    - _ColorFactor: 4
+    - _ColorFactor: 1
     - _ColorMode: 0
     - _Cull: 2
     - _Culling: 0
@@ -110,7 +109,6 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Impact: 0
-    - _ImpactFactor: 1
     - _ImpactSize: 0.5
     - _InvFade: 1
     - _Lighting: 0
@@ -120,7 +118,6 @@ Material:
     - _MaskCutOut: 1
     - _MaskFade: 1
     - _MaskOffsetFactor: 1
-    - _MaxIndex: 5
     - _Metallic: 0
     - _MixedMove: 0
     - _Mode: 3
@@ -128,7 +125,7 @@ Material:
     - _NoiseScale: 0.0175
     - _NormalAnimate: 1
     - _NormalAnimateSpeed: 0.15
-    - _NormalDistortion: 1
+    - _NormalDistortion: 0
     - _NormalDistortionFactor: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -151,7 +148,6 @@ Material:
     - _TexcoordMoveStrength: 20
     - _TexcoordMoveUsingCustom: 0
     - _TextureAnimate: 1
-    - _TextureAnimateAdvanced: 0
     - _TextureAnimateSpeed: 0.15
     - _TextureAnimateStyle: 0
     - _TextureBlend: 0

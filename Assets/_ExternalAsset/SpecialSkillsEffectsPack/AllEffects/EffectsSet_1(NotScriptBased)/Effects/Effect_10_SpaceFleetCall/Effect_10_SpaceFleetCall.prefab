@@ -1007,7 +1007,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -20424,16 +20424,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 458491794658039836}
     m_Modifications:
-    - target: {fileID: 8622990535425391408, guid: 2cecb7e57f70d6543bb8e86595a7b02a,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8622990535425391408, guid: 2cecb7e57f70d6543bb8e86595a7b02a,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 8622990535425391420, guid: 2cecb7e57f70d6543bb8e86595a7b02a,
         type: 3}
       propertyPath: m_Name

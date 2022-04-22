@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6714037650049474002
 Transform:
   m_ObjectHideFlags: 0
@@ -1007,7 +1007,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 25
+        scalar: 50
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -4799,7 +4799,7 @@ GameObject:
   - component: {fileID: 6714037650313359929}
   - component: {fileID: 6714037650313359930}
   - component: {fileID: 6714037650313359931}
-  - component: {fileID: 4145590307488952834}
+  - component: {fileID: 781309358128270446}
   m_Layer: 0
   m_Name: Effect_06_BloodSphere
   m_TagString: Untagged
@@ -9545,7 +9545,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &4145590307488952834
+--- !u!114 &781309358128270446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9841,8 +9841,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 2
+      scalar: 1
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10422,7 +10422,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 250
+      scalar: 2500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -14597,8 +14597,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 15
-      minScalar: 10
+      scalar: 10
+      minScalar: 2.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15178,7 +15178,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 300
+      scalar: 2500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -19353,8 +19353,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.5
+      scalar: 0.5
+      minScalar: 0.15
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -20044,7 +20044,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 50
+        scalar: 500
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -24265,8 +24265,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.3
+      scalar: 0.15
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -24846,7 +24846,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 2500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -29747,7 +29747,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 250
       minScalar: 10
       maxCurve:
         serializedVersion: 2

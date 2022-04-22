@@ -29,7 +29,7 @@ MonoBehaviour:
     speed: 0
     destroyTime: 3
   attackFx2:
-    prefab: {fileID: 5518456644253971154, guid: d73eca5e97438f44d80adca02ebef99e, type: 3}
+    prefab: {fileID: 7072887256004852798, guid: 7ff782b4293947e45b3c3f5f83157935, type: 3}
     speed: 0
     destroyTime: 8
   attackFx3:

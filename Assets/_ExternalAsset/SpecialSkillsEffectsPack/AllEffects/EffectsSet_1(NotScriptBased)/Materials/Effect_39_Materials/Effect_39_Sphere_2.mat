@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Effect_39_Sphere_2
   m_Shader: {fileID: 4800000, guid: 1d58a8e283100ea4f8435e923e54553e, type: 3}
-  m_ShaderKeywords: IS_NORMAL_ANIMATE IS_NORMAL_DISTORTION IS_RIMLIGHT IS_SOFT_PARTICLES
-    IS_TEXCOORD_MOVE IS_TEXTURE_ANIMATE IS_UNITY_PARTICLE_INSTANCING_ENABLED _ALPHAPREMULTIPLY_ON
+  m_ShaderKeywords: IS_NORMAL_ANIMATE IS_RIMLIGHT IS_SOFT_PARTICLES IS_TEXCOORD_MOVE
+    IS_TEXTURE_ANIMATE IS_UNITY_PARTICLE_INSTANCING_ENABLED _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -92,7 +92,7 @@ Material:
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
     - _CameraNearFadeDistance: 1
-    - _ColorFactor: 4
+    - _ColorFactor: 3
     - _ColorMode: 0
     - _Cull: 2
     - _Culling: 2
@@ -125,7 +125,7 @@ Material:
     - _NoiseScale: 0
     - _NormalAnimate: 1
     - _NormalAnimateSpeed: 0.15
-    - _NormalDistortion: 1
+    - _NormalDistortion: 0
     - _NormalDistortionFactor: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -133,6 +133,7 @@ Material:
     - _RimLight: 1
     - _RimScale: 15
     - _RimStrength: 15
+    - _SecondColor: 0
     - _SmoothnessTextureChannel: 0
     - _SoftParticle: 1
     - _SoftParticlesEnabled: 0
@@ -140,10 +141,12 @@ Material:
     - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _TexLength: 1
     - _TexPath: 1
     - _TexPosMove: -1
     - _TexcoordMove: 1
     - _TexcoordMoveStrength: 30
+    - _TexcoordMoveUsingCustom: 0
     - _TextureAnimate: 1
     - _TextureAnimateSpeed: 6
     - _TextureAnimateStyle: 0
@@ -168,3 +171,4 @@ Material:
     - _RimColor: {r: 0.86680657, g: 2.1657221, b: 4.0836215, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 0.53769916, g: 0.5405441, b: 0.5433891, a: 0.11764706}
+    - _TintColor2: {r: 1, g: 1, b: 1, a: 1}

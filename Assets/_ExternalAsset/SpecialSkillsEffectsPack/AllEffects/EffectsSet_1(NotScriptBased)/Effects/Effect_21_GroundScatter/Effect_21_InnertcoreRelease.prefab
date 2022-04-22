@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1845023086335433741}
   m_Layer: 0
-  m_Name: Effect_21_InnertcoreRelease
+  m_Name: Effect_21_InnrtcoreRelease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,7 +319,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1010,7 +1010,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 25
+        scalar: 250
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1642,7 +1642,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 200
+      scalar: 150
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -14738,7 +14738,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.4
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -15429,7 +15429,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 25
+        scalar: 250
         minScalar: 30
         maxCurve:
           serializedVersion: 2

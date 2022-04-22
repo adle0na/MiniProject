@@ -5040,8 +5040,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.2
+      scalar: 0.2
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5621,7 +5621,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 150
+      scalar: 2500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9796,8 +9796,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.75
-      minScalar: 0.5
+      scalar: 0.2
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10377,7 +10377,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 1500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -19318,7 +19318,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 10
-      minScalar: 5
+      minScalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19898,7 +19898,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -23799,7 +23799,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1286001781200285868}
   m_Layer: 0
-  m_Name: Effect_19_FlameDestroyer
+  m_Name: Effect_19_FlameBreath_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -91,7 +91,7 @@ Material:
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
     - _CameraNearFadeDistance: 1
-    - _ColorFactor: 2
+    - _ColorFactor: 1.75
     - _ColorMode: 0
     - _Cull: 2
     - _Culling: 0
@@ -132,6 +132,7 @@ Material:
     - _RimLight: 0
     - _RimScale: 1
     - _RimStrength: 1
+    - _SecondColor: 0
     - _SmoothnessTextureChannel: 0
     - _SoftParticle: 1
     - _SoftParticlesEnabled: 0
@@ -139,18 +140,22 @@ Material:
     - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _TexLength: 1
     - _TexPath: 1
     - _TexPosMove: 0.08
     - _TexcoordMove: 0
     - _TexcoordMoveStrength: 2
+    - _TexcoordMoveUsingCustom: 0
     - _TextureAnimate: 0
     - _TextureAnimateSpeed: 1
     - _TextureAnimateStyle: 1
     - _TextureBlend: 0
     - _TextureNoise: 0
     - _UVSec: 0
+    - _UseTexAnimation: 0
     - _VertexAnimation: 0
     - _ZTest1: 5
+    - _ZTest2: 2
     - _ZWrite: 0
     - _xTexcoordMove: 1
     - _yTexcoordMove: 1
@@ -163,3 +168,4 @@ Material:
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 0, g: 0.4234999, b: 2.7030084, a: 1}
+    - _TintColor2: {r: 1, g: 1, b: 1, a: 1}

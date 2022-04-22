@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Effect_54_Beam_2
   m_Shader: {fileID: 4800000, guid: 1d58a8e283100ea4f8435e923e54553e, type: 3}
-  m_ShaderKeywords: IS_MASK_FADE IS_NORMAL_ANIMATE IS_NORMAL_DISTORTION IS_SOFT_PARTICLES
-    IS_TEXCOORD_MOVE IS_TEXTURE_ANIMATE IS_UNITY_PARTICLE_INSTANCING_ENABLED _ALPHAPREMULTIPLY_ON
+  m_ShaderKeywords: IS_MASK_FADE IS_NORMAL_ANIMATE IS_SOFT_PARTICLES IS_TEXCOORD_MOVE
+    IS_TEXTURE_ANIMATE IS_UNITY_PARTICLE_INSTANCING_ENABLED _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -92,7 +92,7 @@ Material:
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
     - _CameraNearFadeDistance: 1
-    - _ColorFactor: 7.5
+    - _ColorFactor: 2.5
     - _ColorMode: 0
     - _Cull: 2
     - _Culling: 0
@@ -125,7 +125,7 @@ Material:
     - _NoiseScale: 0.01
     - _NormalAnimate: 1
     - _NormalAnimateSpeed: 0.15
-    - _NormalDistortion: 1
+    - _NormalDistortion: 0
     - _NormalDistortionFactor: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -146,6 +146,7 @@ Material:
     - _TexPosMove: 1
     - _TexcoordMove: 1
     - _TexcoordMoveStrength: 1
+    - _TexcoordMoveUsingCustom: 0
     - _TextureAnimate: 1
     - _TextureAnimateSpeed: 0.15
     - _TextureAnimateStyle: 2
