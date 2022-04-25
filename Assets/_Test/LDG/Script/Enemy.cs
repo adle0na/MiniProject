@@ -25,6 +25,7 @@ namespace _Test.LDG.Script
         [SerializeField] private Transform firePoint;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private Image healthImage;
+        [SerializeField] private Transform hitTextPos;
 
         private Transform target;
         private bool isAttack = false;
@@ -230,12 +231,11 @@ namespace _Test.LDG.Script
 
         public void TakeDamage(int damage)
         {
-            if (enemyClass.IsDead)
-            {
-                return;
-            }
+            if (enemyClass.IsDead) { return; }
 
             enemyClass.HitHealth(damage);
+
+            UIManager.Instance.PopDamageText(hitTextPos.position, damage);
 
             canvasGroup.DOFade(1, 0.1f)
                 .OnComplete(() => canvasGroup.DOFade(0, 2f));
