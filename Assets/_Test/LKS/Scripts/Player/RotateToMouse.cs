@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,12 @@ public class RotateToMouse : MonoBehaviour
     private float limitMaxX = 50; // 카메라 x축 회전범위(최대)
     private float eulerAngleX;
     private float eulerAngleY;
+
+    private void Awake()
+    {
+        eulerAngleX = transform.eulerAngles.x;
+        eulerAngleY = transform.eulerAngles.y;
+    }
 
     public void UpdateRotate(float mouseX, float mouseY)
     {
