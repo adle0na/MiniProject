@@ -7,20 +7,17 @@ using UnityEngine;
 
 public class StageStart : MonoBehaviour
 {
-    
-    public int enemyCount;
+    [HideInInspector]public int enemyCount;
     
     public EnemySpawnPoint[] enemySpawnPoints;
 
-    private bool playerInstage = false;
+    [HideInInspector]public bool playerInstage = false;
 
-    [SerializeField] private GameObject[] portalVisible;
+    public GameObject[] portalVisible;
 
-    private bool stageMovable = false;
+    [HideInInspector]public bool isClear = false;
 
-    public bool isClear = false;
-    
-    // 플레이어 감지 적 스폰 
+    // 플레이어 감지 적 스폰 (
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.TryGetComponent<CharacterController>(out CharacterController controller))
@@ -33,9 +30,8 @@ public class StageStart : MonoBehaviour
                     enemyCount++;
                     _enemySpawnPoint.StageStartSpawn(this);
                 }
-                StartCoroutine(EnemyCountCheck());
             }
-
+            StartCoroutine(EnemyCountCheck());
         }
     }
     
@@ -45,31 +41,39 @@ public class StageStart : MonoBehaviour
         enemyCount--;
         StartCoroutine(EnemyCountCheck());
     }
-    
+
+    private void Update()
+    {
+        StartCoroutine(PlayerCheck());
+    }
+
     // 모든 적 처치시 포탈 활성화
     IEnumerator EnemyCountCheck()
     {
         if (enemyCount == 0 && playerInstage == true)
         {
-            Debug.Log("적을 전부 처치");
             isClear = true;
             foreach (var _portalVisible in portalVisible)
             {
                 _portalVisible.SetActive(true);
-                stageMovable = true;
             }
-            Debug.Log("포탈 활성화");
-            // 보상 조건 넣으시면 됩니당
         }
         yield break;
     }
-
-    IEnumerator ClearCheck()
+    private IEnumerator PlayerCheck()
     {
-        if (isClear == false)
+        if(playerInstage == false)
         {
-            Debug.Log("클리어 확인");
+            foreach (var _portalVisible in portalVisible)
+            {
+                _portalVisible.SetActive(false);
+            }
             yield break;
         }
+        else
+        {
+            yield return new WaitForSeconds(5);
+        }
     }
+
 }

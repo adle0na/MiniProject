@@ -10,6 +10,7 @@ TagManager:
   - Weapon
   - Enemy
   - Portal
+  - Stage
   layers:
   - Default
   - TransparentFX

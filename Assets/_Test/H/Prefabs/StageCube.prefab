@@ -202,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7907829549677356147}
   - component: {fileID: -1753824285147050380}
-  - component: {fileID: 1408927629786861865}
+  - component: {fileID: 3507540072757740121}
   m_Layer: 0
   m_Name: StageCube
   m_TagString: Untagged
@@ -243,7 +243,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 5, z: 0}
---- !u!114 &1408927629786861865
+--- !u!114 &3507540072757740121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,6 +259,7 @@ MonoBehaviour:
   enemySpawnPoints: []
   playerInstage: 0
   portalVisible: []
+  isClear: 0
 --- !u!1 &3774570902809018771
 GameObject:
   m_ObjectHideFlags: 0

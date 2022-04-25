@@ -18,14 +18,18 @@ PrefabInstance:
     - target: {fileID: 752025183220226232, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: enemyClass
       value: 
-      objectReference: {fileID: 11400000, guid: d7a47f864bec15e47b962fe5af43b868, type: 2}
+      objectReference: {fileID: 11400000, guid: eeeef59fda7c4644f9088644a9c9c3eb, type: 2}
     - target: {fileID: 752025183220226232, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: animEventer
       value: 
       objectReference: {fileID: 1024474278334473645}
     - target: {fileID: 752025183220226234, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: m_Name
-      value: Enemy Speed
+      value: Speed_G
+      objectReference: {fileID: 0}
+    - target: {fileID: 752025183220226234, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 752025183220226238, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: m_RootOrder
@@ -70,6 +74,10 @@ PrefabInstance:
     - target: {fileID: 752025183220226238, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 941613250831971660, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2605669548932493333, guid: de118e0e2891c4a48b44d4576f1dca00, type: 3}
       propertyPath: m_Alpha

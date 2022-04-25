@@ -21,7 +21,7 @@ MonoBehaviour:
   speed: 7
   dropItems: []
   projectile:
-    prefab: {fileID: 0}
+    prefab: {fileID: 6866811461787474450, guid: 610c1138cde1ae648b63e94aa2a0c43e, type: 3}
     speed: 0
     destroyTime: 0
   attackFx1:

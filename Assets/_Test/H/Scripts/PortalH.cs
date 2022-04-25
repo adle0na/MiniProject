@@ -6,11 +6,10 @@ using UnityEngine;
 
 public class PortalH : MonoBehaviour
 {
-    
-    StageStart _stageStart;
+    [SerializeField] StageStart _stageStart;
     
     [SerializeField] private Transform spawnPoint;
-
+    
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.TryGetComponent<CharacterController>(out CharacterController controller))
@@ -19,6 +18,7 @@ public class PortalH : MonoBehaviour
             controller.enabled = false;
             collision.gameObject.transform.position = spawnPoint.position;
             controller.enabled = true;
+            _stageStart.playerInstage = false;
         }
     }
 }
