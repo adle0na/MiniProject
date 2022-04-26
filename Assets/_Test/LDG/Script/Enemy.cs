@@ -178,7 +178,7 @@ namespace _Test.LDG.Script
                     AttackTarget(attackAble);
             }
 
-            OnDead();
+            TakeDamage(enemyClass.CurHealth);
         }
 
         private void BossAttack()
