@@ -85,7 +85,8 @@ namespace _Test.LDG.Script
                 EnemyType.Melee => MeleeAttack,
                 EnemyType.Explosion => ExplosionAttack,
                 EnemyType.Projectile => ProjectileAttack,
-                EnemyType.Boss => BossAttack
+                EnemyType.Boss => BossAttack,
+                _ => throw new Exception("처신 잘하라고")
             };
 
             Observable.FromCoroutine(EnemyRoutine)
